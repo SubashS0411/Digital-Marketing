@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Analytics - Nexus SEO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        * { box-sizing: border-box; }
+        body { background: #0f172a; color: #fff; font-family: 'Inter', sans-serif; }
+        body.dashboard-page { overflow: hidden; }
+        
+        .card { background: #1e293b; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; }
+        .gradient-text { background: linear-gradient(135deg, #22d3ee, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+        
+        .sidebar { transition: transform 0.3s ease; }
+        @media (max-width: 768px) {
+            .sidebar { position: fixed; left: 0; top: 64px; height: calc(100vh - 64px); z-index: 40; transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+        }
+        @media (min-width: 769px) {
+            .sidebar { position: sticky; top: 64px; height: calc(100vh - 64px); align-self: flex-start; }
+        }
+        .dashboard-content { height: calc(100vh - 64px); overflow-y: auto; }
+        .stat-card { transition: all 0.2s ease; }
+        .stat-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="min-h-screen dashboard-page">
+    <!-- Top Navbar -->
+    <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-xl border-b border-white/5">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center h-16">
+            <div class="flex items-center gap-4">
+                <button id="menuBtn" class="md:hidden w-10 h-10 flex items-center justify-center text-white rounded-lg hover:bg-white/10">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+                <a href="index.html" class="text-xl font-bold flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-cyan-400 to-violet-500 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-bolt text-white text-sm"></i>
+                    </div>
+                    <span class="gradient-text">NEXUS</span>
+                </a>
+            </div>
+            
+            <div class="hidden lg:flex items-center gap-6">
+                <a href="index.html" class="hover:text-cyan-400 transition-colors text-sm">Home</a>
+                <a href="services.html" class="hover:text-cyan-400 transition-colors text-sm">Services</a>
+                <a href="admin-dashboard.html" class="hover:text-cyan-400 transition-colors text-sm">Admin</a>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 relative">
+                    <i class="fa-solid fa-bell text-gray-400"></i>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-cyan-400 rounded-full"></span>
+                </button>
+                <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" class="w-10 h-10 rounded-full cursor-pointer">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Overlay -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden"></div>
+
+    <div class="flex pt-16">
+        <!-- Sidebar -->
+        <aside class="sidebar w-64 bg-slate-900 border-r border-white/5 flex flex-col">
+            <div class="p-4 border-b border-white/5">
+                <div class="flex items-center gap-3">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" class="w-12 h-12 rounded-xl">
+                    <div>
+                        <p class="font-semibold">John Doe</p>
+                        <p class="text-xs text-emerald-400">● Pro Plan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="flex-1 p-4 space-y-1">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-cyan-500/20 to-violet-500/20 text-cyan-400 rounded-xl font-medium">
+                    <i class="fa-solid fa-chart-line w-5"></i> My Analytics
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 rounded-xl transition">
+                    <i class="fa-solid fa-globe w-5"></i> My Websites
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 rounded-xl transition">
+                    <i class="fa-solid fa-key w-5"></i> Keywords
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 rounded-xl transition">
+                    <i class="fa-solid fa-link w-5"></i> Backlinks
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 rounded-xl transition">
+                    <i class="fa-solid fa-file-lines w-5"></i> Reports
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 rounded-xl transition">
+                    <i class="fa-solid fa-gear w-5"></i> Settings
+                </a>
+            </nav>
+            
+            <div class="p-4 border-t border-white/5">
+                <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-xl transition">
+                    <i class="fa-solid fa-right-from-bracket w-5"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 lg:p-8 dashboard-content bg-slate-950">
+            <!-- Welcome Header -->
+            <div class="mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold mb-2">Welcome back, John! 👋</h1>
+                <p class="text-gray-400">Here's how your websites are performing this week.</p>
+            </div>
+
+            <!-- KPI Snapshot - Sparkline Cards (like reference image) -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-semibold">KPI Snapshot</h2>
+                    <span class="text-xs text-gray-500">Last 7 days</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="card p-5 stat-card">
+                        <span class="text-gray-400 text-sm">Traffic</span>
+                        <div id="trafficSparkline" class="h-16 mt-2"></div>
+                    </div>
+                    <div class="card p-5 stat-card">
+                        <span class="text-gray-400 text-sm">Conversions</span>
+                        <div id="conversionSparkline" class="h-16 mt-2"></div>
+                    </div>
+                    <div class="card p-5 stat-card">
+                        <span class="text-gray-400 text-sm">Retention</span>
+                        <div id="retentionSparkline" class="h-16 mt-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="card p-5 stat-card">
+                    <div class="w-10 h-10 bg-cyan-500/20 rounded-xl flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-eye text-cyan-400"></i>
+                    </div>
+                    <p class="text-2xl font-bold">24.5K</p>
+                    <p class="text-gray-400 text-sm">Total Visitors</p>
+                </div>
+                <div class="card p-5 stat-card">
+                    <div class="w-10 h-10 bg-violet-500/20 rounded-xl flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-ranking-star text-violet-400"></i>
+                    </div>
+                    <p class="text-2xl font-bold">#3</p>
+                    <p class="text-gray-400 text-sm">Avg. Position</p>
+                </div>
+                <div class="card p-5 stat-card">
+                    <div class="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-link text-emerald-400"></i>
+                    </div>
+                    <p class="text-2xl font-bold">1,847</p>
+                    <p class="text-gray-400 text-sm">Backlinks</p>
+                </div>
+                <div class="card p-5 stat-card">
+                    <div class="w-10 h-10 bg-amber-500/20 rounded-xl flex items-center justify-center mb-3">
+                        <i class="fa-solid fa-key text-amber-400"></i>
+                    </div>
+                    <p class="text-2xl font-bold">234</p>
+                    <p class="text-gray-400 text-sm">Keywords</p>
+                </div>
+            </div>
+
+            <!-- Charts Row 1 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <!-- Sessions by Track - Colorful Donut (like reference image) -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-semibold">Sessions by track</h3>
+                        <span class="text-xs text-gray-500">Planned</span>
+                    </div>
+                    <div id="sessionsChart"></div>
+                </div>
+
+                <!-- Networking Goals - Grouped Bar (like reference image) -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-semibold">Networking goals</h3>
+                        <span class="text-xs text-gray-500">This week</span>
+                    </div>
+                    <div id="goalsChart"></div>
+                </div>
+            </div>
+
+            <!-- Charts Row 2 -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Organic Traffic -->
+                <div class="lg:col-span-2 card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-semibold">Organic Traffic</h3>
+                        <select class="bg-slate-800 border border-white/10 rounded-lg px-3 py-1.5 text-sm">
+                            <option>Last 30 days</option>
+                            <option>Last 90 days</option>
+                        </select>
+                    </div>
+                    <div id="trafficChart"></div>
+                </div>
+
+                <!-- Device Split -->
+                <div class="card p-6">
+                    <h3 class="font-semibold mb-4">Device Split</h3>
+                    <div id="deviceChart"></div>
+                </div>
+            </div>
+
+            <!-- Keywords & Backlinks -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <!-- Top Keywords -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-semibold">Top Keywords</h3>
+                        <a href="#" class="text-cyan-400 text-sm hover:underline">View All</a>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 bg-emerald-500/20 text-emerald-400 rounded-lg flex items-center justify-center text-sm font-bold">#1</span>
+                                <span class="text-sm">digital marketing agency</span>
+                            </div>
+                            <span class="text-emerald-400 text-xs font-medium">▲ 2</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 bg-cyan-500/20 text-cyan-400 rounded-lg flex items-center justify-center text-sm font-bold">#3</span>
+                                <span class="text-sm">seo services near me</span>
+                            </div>
+                            <span class="text-emerald-400 text-xs font-medium">▲ 5</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 bg-violet-500/20 text-violet-400 rounded-lg flex items-center justify-center text-sm font-bold">#5</span>
+                                <span class="text-sm">content marketing tips</span>
+                            </div>
+                            <span class="text-amber-400 text-xs font-medium">— 0</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 bg-amber-500/20 text-amber-400 rounded-lg flex items-center justify-center text-sm font-bold">#8</span>
+                                <span class="text-sm">social media strategy</span>
+                            </div>
+                            <span class="text-red-400 text-xs font-medium">▼ 1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Backlinks -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-semibold">Recent Backlinks</h3>
+                        <a href="#" class="text-cyan-400 text-sm hover:underline">View All</a>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 p-3 bg-slate-800/50 rounded-xl">
+                            <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-violet-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">85</div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium truncate">forbes.com</p>
+                                <p class="text-xs text-gray-500">2 hours ago</p>
+                            </div>
+                            <span class="text-emerald-400 text-xs">dofollow</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-slate-800/50 rounded-xl">
+                            <div class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">72</div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium truncate">techcrunch.com</p>
+                                <p class="text-xs text-gray-500">5 hours ago</p>
+                            </div>
+                            <span class="text-emerald-400 text-xs">dofollow</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-slate-800/50 rounded-xl">
+                            <div class="w-10 h-10 bg-gradient-to-br from-violet-400 to-pink-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">68</div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium truncate">medium.com</p>
+                                <p class="text-xs text-gray-500">1 day ago</p>
+                            </div>
+                            <span class="text-gray-400 text-xs">nofollow</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-slate-800/50 rounded-xl">
+                            <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">54</div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium truncate">entrepreneur.com</p>
+                                <p class="text-xs text-gray-500">2 days ago</p>
+                            </div>
+                            <span class="text-emerald-400 text-xs">dofollow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Charts -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Page Speed -->
+                <div class="card p-6">
+                    <h3 class="font-semibold mb-4">Page Speed</h3>
+                    <div id="speedChart"></div>
+                </div>
+
+                <!-- Crawl Activity -->
+                <div class="card p-6">
+                    <h3 class="font-semibold mb-4">Crawl Activity</h3>
+                    <div id="crawlChart"></div>
+                </div>
+
+                <!-- SEO Health -->
+                <div class="card p-6">
+                    <h3 class="font-semibold mb-4">SEO Health</h3>
+                    <div id="healthChart"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        menuBtn?.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('hidden');
+        });
+
+        sidebarOverlay?.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.add('hidden');
+        });
+
+        // KPI Sparklines (like reference image - simple upward trend lines)
+        const sparklineOpts = (color, data) => ({
+            series: [{ data }],
+            chart: { type: 'line', height: 60, sparkline: { enabled: true }, background: 'transparent' },
+            stroke: { curve: 'smooth', width: 3 },
+            colors: [color],
+            tooltip: { enabled: false }
+        });
+
+        new ApexCharts(document.querySelector("#trafficSparkline"), sparklineOpts('#22d3ee', [31, 40, 28, 51, 42, 85, 77])).render();
+        new ApexCharts(document.querySelector("#conversionSparkline"), sparklineOpts('#34d399', [12, 19, 15, 25, 22, 30, 28])).render();
+        new ApexCharts(document.querySelector("#retentionSparkline"), sparklineOpts('#fbbf24', [45, 52, 48, 61, 58, 67, 63])).render();
+
+        // Sessions by Track - Colorful Thick Donut (like reference image)
+        new ApexCharts(document.querySelector("#sessionsChart"), {
+            series: [35, 28, 18, 12, 7],
+            chart: { type: 'donut', height: 320, background: 'transparent' },
+            colors: ['#6366f1', '#22d3ee', '#34d399', '#fbbf24', '#c4b5fd'],
+            labels: ['AI & ML', 'Cloud', 'Security', 'Web', 'Leadership'],
+            plotOptions: { pie: { donut: { size: '60%' }, expandOnClick: false } },
+            dataLabels: { enabled: false },
+            legend: { position: 'top', horizontalAlign: 'center', labels: { colors: '#94a3b8' }, markers: { width: 10, height: 10, radius: 10 }, itemMargin: { horizontal: 8 } },
+            stroke: { width: 4, colors: ['#1e293b'] },
+            tooltip: { theme: 'dark' }
+        }).render();
+
+        // Networking Goals - Grouped Bar (like reference image)
+        new ApexCharts(document.querySelector("#goalsChart"), {
+            series: [
+                { name: 'Goal', data: [2, 2, 2, 3, 2] },
+                { name: 'Actual', data: [1, 2, 1, 3, 2] }
+            ],
+            chart: { type: 'bar', height: 280, background: 'transparent', toolbar: { show: false } },
+            colors: ['#c4b5fd', '#22d3ee'],
+            plotOptions: { bar: { borderRadius: 6, columnWidth: '60%' } },
+            dataLabels: { enabled: false },
+            xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], labels: { style: { colors: '#94a3b8' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+            yaxis: { labels: { style: { colors: '#94a3b8' } }, min: 0, max: 3.5, tickAmount: 4 },
+            grid: { borderColor: 'rgba(255,255,255,0.06)' },
+            legend: { labels: { colors: '#94a3b8' }, position: 'top', horizontalAlign: 'right', markers: { width: 8, height: 8, radius: 8 } },
+            tooltip: { theme: 'dark' }
+        }).render();
+
+        // Organic Traffic - Area Chart
+        new ApexCharts(document.querySelector("#trafficChart"), {
+            series: [{ name: 'Visitors', data: [4200, 5100, 4800, 6200, 5900, 7100, 8500, 9200] }],
+            chart: { type: 'area', height: 280, toolbar: { show: false }, background: 'transparent' },
+            colors: ['#22d3ee'],
+            dataLabels: { enabled: false },
+            stroke: { curve: 'smooth', width: 3 },
+            fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 90, 100] } },
+            xaxis: { categories: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8'], labels: { style: { colors: '#94a3b8' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+            yaxis: { labels: { style: { colors: '#94a3b8' }, formatter: (val) => (val/1000).toFixed(1) + 'K' } },
+            grid: { borderColor: 'rgba(255,255,255,0.06)' },
+            tooltip: { theme: 'dark' }
+        }).render();
+
+        // Device Split - Donut
+        new ApexCharts(document.querySelector("#deviceChart"), {
+            series: [55, 32, 13],
+            chart: { type: 'donut', height: 250, background: 'transparent' },
+            colors: ['#6366f1', '#22d3ee', '#34d399'],
+            labels: ['Mobile', 'Desktop', 'Tablet'],
+            plotOptions: { pie: { donut: { size: '65%' }, expandOnClick: false } },
+            dataLabels: { enabled: false },
+            legend: { position: 'bottom', labels: { colors: '#94a3b8' }, markers: { width: 8, height: 8, radius: 8 } },
+            stroke: { width: 3, colors: ['#1e293b'] },
+            tooltip: { theme: 'dark' }
+        }).render();
+
+        // Page Speed - Radial
+        new ApexCharts(document.querySelector("#speedChart"), {
+            series: [92],
+            chart: { type: 'radialBar', height: 220, background: 'transparent' },
+            colors: ['#34d399'],
+            plotOptions: {
+                radialBar: {
+                    hollow: { size: '70%' },
+                    track: { background: 'rgba(255,255,255,0.08)' },
+                    dataLabels: {
+                        name: { fontSize: '14px', color: '#94a3b8', offsetY: 20 },
+                        value: { fontSize: '32px', color: '#fff', fontWeight: '700', offsetY: -15 }
+                    }
+                }
+            },
+            labels: ['Speed'],
+            stroke: { lineCap: 'round' }
+        }).render();
+
+        // Crawl Activity - Bar
+        new ApexCharts(document.querySelector("#crawlChart"), {
+            series: [{ name: 'Pages', data: [120, 145, 132, 168, 155, 178, 192] }],
+            chart: { type: 'bar', height: 200, toolbar: { show: false }, background: 'transparent' },
+            colors: ['#a78bfa'],
+            plotOptions: { bar: { borderRadius: 4, columnWidth: '60%' } },
+            dataLabels: { enabled: false },
+            xaxis: { categories: ['M', 'T', 'W', 'T', 'F', 'S', 'S'], labels: { style: { colors: '#94a3b8' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+            yaxis: { labels: { style: { colors: '#94a3b8' } } },
+            grid: { borderColor: 'rgba(255,255,255,0.06)' },
+            tooltip: { theme: 'dark' }
+        }).render();
+
+        // SEO Health - Multi Radial
+        new ApexCharts(document.querySelector("#healthChart"), {
+            series: [87, 92, 78],
+            chart: { type: 'radialBar', height: 220, background: 'transparent' },
+            colors: ['#6366f1', '#22d3ee', '#34d399'],
+            plotOptions: {
+                radialBar: {
+                    hollow: { size: '40%' },
+                    track: { background: 'rgba(255,255,255,0.08)', margin: 5 },
+                    dataLabels: {
+                        name: { fontSize: '11px', color: '#94a3b8' },
+                        value: { fontSize: '14px', color: '#fff', fontWeight: '600', formatter: (val) => val + '%' },
+                        total: { show: true, label: 'Health', color: '#94a3b8', formatter: () => '86%' }
+                    }
+                }
+            },
+            labels: ['On-Page', 'Technical', 'Content'],
+            stroke: { lineCap: 'round' }
+        }).render();
+    </script>
+</body>
+</html>

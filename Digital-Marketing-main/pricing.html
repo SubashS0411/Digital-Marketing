@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Nexus SEO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/config.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="bg-dark text-light font-sans antialiased">
+
+    <!-- Navbar (Darker variant) -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-black/80 backdrop-blur-md border-b border-white/5 py-4" id="navbar">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+                <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-bolt text-white text-sm"></i>
+                </div>
+                <span class="gradient-text">NEXUS</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <!-- Home Dropdown -->
+                <div class="relative group">
+                    <button class="text-gray-300 hover:text-white transition-colors text-sm flex items-center gap-1 py-2">
+                        Home <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div class="absolute top-full left-0 mt-2 w-48 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden">
+                        <a href="index.html" class="block px-4 py-3 hover:bg-white/10 hover:text-white transition-colors text-sm border-b border-white/5">Home Version 1</a>
+                        <a href="index2.html" class="block px-4 py-3 hover:bg-white/10 hover:text-white transition-colors text-sm">Home Version 2</a>
+                    </div>
+                </div>
+
+                <a href="about.html" class="text-gray-300 hover:text-white transition-colors text-sm">About</a>
+                <a href="services.html" class="text-gray-300 hover:text-white transition-colors text-sm">Services</a>
+                
+                <!-- Dashboard Dropdown -->
+                <div class="relative group">
+                    <button class="text-gray-300 hover:text-white transition-colors text-sm flex items-center gap-1 py-2">
+                        Dashboard <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div class="absolute top-full left-0 mt-2 w-48 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden">
+                        <a href="admin-dashboard.html" class="block px-4 py-3 hover:bg-white/10 hover:text-white transition-colors text-sm border-b border-white/5">Admin Dashboard</a>
+                        <a href="user-dashboard.html" class="block px-4 py-3 hover:bg-white/10 hover:text-white transition-colors text-sm">User Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="case-studies.html" class="text-gray-300 hover:text-white transition-colors text-sm">Work</a>
+                <a href="pricing.html" class="text-white font-medium transition-colors text-sm">Pricing</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button id="rtl-toggle" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-globe text-gray-300"></i>
+                </button>
+                <a href="contact.html" class="hidden md:block px-6 py-2 border border-white/20 text-white font-medium rounded hover:bg-white hover:text-black transition-all">
+                    Contact Sales
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center text-white text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col md:hidden">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-5 border-b border-white/10">
+                <a href="index.html" class="text-xl font-bold text-white flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-bolt text-white text-xs"></i>
+                    </div>
+                    <span class="gradient-text">NEXUS</span>
+                </a>
+                <button id="close-menu-btn" class="w-10 h-10 flex items-center justify-center text-white text-xl rounded-full hover:bg-white/10 transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="flex-1 flex flex-col items-center justify-center gap-6 text-xl p-5">
+                <div class="text-center">
+                    <p class="text-gray-500 text-sm uppercase tracking-widest mb-2">Home</p>
+                    <a href="index.html" class="block text-white hover:text-primary mb-2">Home V1</a>
+                    <a href="index2.html" class="block text-white hover:text-primary">Home V2</a>
+                </div>
+                <a href="about.html" class="text-white hover:text-primary">About</a>
+                <a href="services.html" class="text-white hover:text-primary">Services</a>
+                <div class="text-center">
+                    <p class="text-gray-500 text-sm uppercase tracking-widest mb-2">Dashboards</p>
+                    <a href="admin-dashboard.html" class="block text-white hover:text-primary mb-2">Admin</a>
+                    <a href="user-dashboard.html" class="block text-white hover:text-primary">User</a>
+                </div>
+                <a href="case-studies.html" class="text-white hover:text-primary">Work</a>
+                <a href="pricing.html" class="text-primary font-bold">Pricing</a>
+                <a href="contact.html" class="px-8 py-3 bg-white text-black font-bold rounded-full">Contact Sales</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-32 relative overflow-hidden">
+        <!-- Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <span class="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-6">Flexible Plans</span>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Invest in <span class="animate-text-gradient">Growth</span></h1>
+                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Transparent pricing. No hidden fees. Cancel anytime. Choose the plan that fits your business needs.</p>
+                
+                <!-- Toggle -->
+                <div class="flex items-center justify-center gap-4">
+                    <span class="text-sm font-bold text-gray-400" id="monthly-label">Monthly</span>
+                    <button id="pricing-toggle" class="w-16 h-8 bg-white/10 rounded-full p-1 relative transition-colors hover:bg-white/20">
+                        <div class="w-6 h-6 bg-primary rounded-full shadow-lg transform transition-transform duration-300 translate-x-0"></div>
+                    </button>
+                    <span class="text-sm font-bold text-white" id="yearly-label">Yearly <span class="text-primary text-xs ml-1 px-2 py-0.5 bg-primary/20 rounded-full">-20%</span></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-1000">
+                
+                <!-- Starter -->
+                <div class="glass-card p-8 rounded-3xl reveal-scale reveal-delay-1 card-tilt hover-lift">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                            <i class="fa-solid fa-seedling text-cyan-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Starter</h3>
+                            <p class="text-gray-500 text-xs">Perfect for small startups</p>
+                        </div>
+                    </div>
+                    <div class="text-4xl font-bold text-white mb-6 price-card" data-monthly="999" data-yearly="799">
+                        $<span class="amount">999</span><span class="text-sm text-gray-500 font-normal">/mo</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-300 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> 5 Keywords Tracked</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Basic SEO Audit</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Monthly Reporting</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> 1 Competitor Analysis</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Email Support</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Basic Analytics</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i class="fa-solid fa-xmark"></i> AI Content Generation</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i class="fa-solid fa-xmark"></i> White Label Reports</li>
+                    </ul>
+                    <a href="contact.html" class="block w-full py-3 border border-white/20 rounded-xl text-center font-bold hover:bg-white hover:text-black transition-all">Choose Starter</a>
+                </div>
+
+                <!-- Pro (Recommended) -->
+                <div class="glass-card p-8 rounded-3xl reveal-scale reveal-delay-2 relative transform md:scale-105 border-primary/50 shadow-[0_0_30px_rgba(0,240,255,0.1)] animate-glow-pulse">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-gradient-to-r from-primary to-secondary rounded-full text-xs font-bold uppercase tracking-widest shadow-lg text-black">Most Popular</div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                            <i class="fa-solid fa-rocket text-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Professional</h3>
+                            <p class="text-gray-500 text-xs">For growing companies</p>
+                        </div>
+                    </div>
+                    <div class="text-4xl font-bold text-white mb-6 price-card" data-monthly="2499" data-yearly="1999">
+                        $<span class="amount">2499</span><span class="text-sm text-gray-500 font-normal">/mo</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-300 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> 50 Keywords Tracked</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Advanced Technical Audit</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Weekly Reporting</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> AI Content (10k words)</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> 10 Competitor Analysis</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Live Chat Support</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Advanced Analytics</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Social Media Integration</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> PPC Campaign Management</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i class="fa-solid fa-xmark"></i> White Label Reports</li>
+                    </ul>
+                    <a href="contact.html" class="block w-full py-3 bg-gradient-to-r from-primary to-secondary text-black rounded-xl text-center font-bold hover:shadow-[0_0_20px_rgba(0,240,255,0.5)] transition-all">Choose Pro</a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="glass-card p-8 rounded-3xl reveal-scale reveal-delay-3 card-tilt hover-lift">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                            <i class="fa-solid fa-building text-purple-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Enterprise</h3>
+                            <p class="text-gray-500 text-xs">Dominate your industry</p>
+                        </div>
+                    </div>
+                    <div class="text-4xl font-bold text-white mb-6 price-card" data-monthly="4999" data-yearly="3999">
+                        $<span class="amount">4999</span><span class="text-sm text-gray-500 font-normal">/mo</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-300 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Unlimited Keywords</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> 24/7 Priority Support</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Custom Dashboards</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Dedicated Account Manager</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> AI Content (Unlimited)</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> White Label Reports</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Full API Access</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Custom Integrations</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Multi-user Team Access</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-primary"></i> Quarterly Strategy Sessions</li>
+                    </ul>
+                    <a href="contact.html" class="block w-full py-3 border border-white/20 rounded-xl text-center font-bold hover:bg-white hover:text-black transition-all">Contact Sales</a>
+                </div>
+
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="mt-16 flex flex-wrap justify-center items-center gap-8 reveal-on-scroll">
+                <div class="flex items-center gap-3 text-gray-400">
+                    <i class="fa-solid fa-shield-halved text-primary text-xl"></i>
+                    <span class="text-sm">30-Day Money Back</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-400">
+                    <i class="fa-solid fa-lock text-primary text-xl"></i>
+                    <span class="text-sm">Secure Payment</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-400">
+                    <i class="fa-solid fa-credit-card text-primary text-xl"></i>
+                    <span class="text-sm">No Setup Fees</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-400">
+                    <i class="fa-solid fa-calendar-xmark text-primary text-xl"></i>
+                    <span class="text-sm">Cancel Anytime</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By Section -->
+    <section class="py-16 bg-black/30">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-gray-500 text-sm uppercase tracking-widest mb-8 reveal-on-scroll">Trusted by 500+ companies worldwide</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 reveal-on-scroll">
+                <div class="text-2xl md:text-3xl font-bold text-gray-400 hover:text-white transition-colors cursor-pointer">Google</div>
+                <div class="text-2xl md:text-3xl font-bold text-gray-400 hover:text-white transition-colors cursor-pointer">Meta</div>
+                <div class="text-2xl md:text-3xl font-bold text-gray-400 hover:text-white transition-colors cursor-pointer">Amazon</div>
+                <div class="text-2xl md:text-3xl font-bold text-gray-400 hover:text-white transition-colors cursor-pointer">Netflix</div>
+                <div class="text-2xl md:text-3xl font-bold text-gray-400 hover:text-white transition-colors cursor-pointer">Spotify</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison Table -->
+    <section class="py-20 bg-black/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 animate-fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Detailed <span class="gradient-text">Comparison</span></h2>
+                <p class="text-gray-400">See what's included in each plan</p>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-[600px]">
+                    <thead>
+                        <tr class="border-b border-white/10">
+                            <th class="text-left py-4 px-4 text-gray-400 font-normal">Features</th>
+                            <th class="py-4 px-4 text-center text-white font-bold">Starter</th>
+                            <th class="py-4 px-4 text-center text-primary font-bold">Professional</th>
+                            <th class="py-4 px-4 text-center text-white font-bold">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">Keywords Tracked</td>
+                            <td class="py-4 px-4 text-center text-white">5</td>
+                            <td class="py-4 px-4 text-center text-primary font-bold">50</td>
+                            <td class="py-4 px-4 text-center text-white">Unlimited</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">Competitor Analysis</td>
+                            <td class="py-4 px-4 text-center text-white">1</td>
+                            <td class="py-4 px-4 text-center text-primary font-bold">10</td>
+                            <td class="py-4 px-4 text-center text-white">Unlimited</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">AI Content Words/mo</td>
+                            <td class="py-4 px-4 text-center text-gray-500">—</td>
+                            <td class="py-4 px-4 text-center text-primary font-bold">10,000</td>
+                            <td class="py-4 px-4 text-center text-white">Unlimited</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">Technical Audit</td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">Backlink Monitoring</td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-xmark text-gray-600"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">PPC Management</td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-xmark text-gray-600"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">Social Media Integration</td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-xmark text-gray-600"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">White Label Reports</td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-xmark text-gray-600"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-xmark text-gray-600"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">API Access</td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-xmark text-gray-600"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-xmark text-gray-600"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-4 px-4 text-gray-300">Dedicated Account Manager</td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-xmark text-gray-600"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-xmark text-gray-600"></i></td>
+                            <td class="py-4 px-4 text-center"><i class="fa-solid fa-check text-primary"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-4 text-gray-300">Support</td>
+                            <td class="py-4 px-4 text-center text-white">Email</td>
+                            <td class="py-4 px-4 text-center text-primary font-bold">Live Chat</td>
+                            <td class="py-4 px-4 text-center text-white">24/7 Priority</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 reveal-on-scroll">
+                <span class="text-primary text-sm font-medium tracking-widest uppercase">FAQ</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-4">Frequently Asked <span class="animate-text-gradient">Questions</span></h2>
+                <p class="text-gray-400">Everything you need to know about our pricing</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal-on-scroll reveal-delay-1">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-white">Can I upgrade or downgrade my plan anytime?</span>
+                        <i class="fa-solid fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm">
+                        Yes! You can upgrade or downgrade your plan at any time. When upgrading, you'll be charged the prorated difference. When downgrading, the credit will be applied to your next billing cycle.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal-on-scroll reveal-delay-2">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-white">What payment methods do you accept?</span>
+                        <i class="fa-solid fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm">
+                        We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers for Enterprise plans. All transactions are secured with 256-bit SSL encryption.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal-on-scroll reveal-delay-3">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-white">Is there a free trial available?</span>
+                        <i class="fa-solid fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm">
+                        Yes, we offer a 14-day free trial on all plans with no credit card required. You'll have full access to all features during the trial period.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal-on-scroll reveal-delay-4">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-white">Do you offer custom enterprise solutions?</span>
+                        <i class="fa-solid fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm">
+                        Absolutely! For large organizations with specific requirements, we offer fully customized solutions. Contact our sales team to discuss your needs and get a tailored quote.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal-on-scroll reveal-delay-5">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-white">What's included in the AI Content Generation?</span>
+                        <i class="fa-solid fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm">
+                        Our AI Content Generation includes blog posts, meta descriptions, product descriptions, social media captions, and email copy. All content is optimized for SEO and can be customized to match your brand voice.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal-on-scroll reveal-delay-6">
+                    <button class="faq-toggle w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-white">How quickly can I see results?</span>
+                        <i class="fa-solid fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-gray-400 text-sm">
+                        While SEO is a long-term strategy, most clients see initial improvements within 2-3 months. Significant ranking improvements typically occur within 6 months. PPC campaigns can show results immediately after launch.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Money Back Guarantee -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="glass-card p-8 md:p-12 rounded-3xl text-center bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-shield-halved text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">30-Day Money-Back Guarantee</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-6">Not satisfied with our services? No problem. We offer a full refund within the first 30 days, no questions asked. Your success is our priority.</p>
+                <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-dark font-bold rounded-full hover:shadow-[0_0_30px_rgba(0,240,255,0.5)] transition-all">
+                    <i class="fa-solid fa-rocket"></i> Start Your Free Trial
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black/80 border-t border-white/10 mt-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-secondary/10 pointer-events-none"></div>
+        <div class="container mx-auto px-6 py-12 relative">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-bolt text-white"></i>
+                        </div>
+                        <span class="text-2xl font-bold gradient-text">NEXUS</span>
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed">AI-first growth studio delivering search dominance, revenue velocity, and memorable brand moments.</p>
+                    <div class="flex gap-3 mt-5">
+                        <a href="#" class="w-10 h-10 rounded-lg bg-white/5 hover:bg-primary/20 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-white/5 hover:bg-primary/20 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-white/5 hover:bg-primary/20 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-white/5 hover:bg-primary/20 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-primary transition-colors">About</a></li>
+                        <li><a href="services.html" class="hover:text-primary transition-colors">Services</a></li>
+                        <li><a href="case-studies.html" class="hover:text-primary transition-colors">Work</a></li>
+                        <li><a href="pricing.html" class="hover:text-primary transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="hover:text-primary transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="login.html" class="hover:text-primary transition-colors">Login</a></li>
+                        <li><a href="admin-dashboard.html" class="hover:text-primary transition-colors">Admin Dashboard</a></li>
+                        <li><a href="user-dashboard.html" class="hover:text-primary transition-colors">User Dashboard</a></li>
+                        <li><a href="coming-soon.html" class="hover:text-primary transition-colors">Product Updates</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                    <h4 class="text-white font-semibold mb-3">Need a quick call?</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">Book a 15-minute strategy sync with our consultants and see where to start.</p>
+                    <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-primary to-secondary text-dark font-bold rounded-full hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
+                        <i class="fa-solid fa-rocket"></i> Book a Call
+                    </a>
+                    <div class="mt-4 text-sm text-gray-400 space-y-1">
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-envelope text-primary"></i> hello@nexus.com</p>
+                        <p class="flex items-center gap-2"><i class="fa-solid fa-phone text-primary"></i> +1 (555) 123-4567</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">© 2025 Nexus Corporation. All rights reserved.</p>
+                <div class="flex flex-wrap gap-6 text-sm text-gray-500">
+                    <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-primary transition-colors">Terms</a>
+                    <a href="#" class="hover:text-primary transition-colors">Security</a>
+                    <a href="#" class="hover:text-primary transition-colors">Status</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Pricing Toggle Logic
+        const toggle = document.getElementById('pricing-toggle');
+        const toggleDot = toggle.querySelector('div');
+        const amounts = document.querySelectorAll('.amount');
+        let isYearly = false;
+
+        toggle.addEventListener('click', () => {
+            isYearly = !isYearly;
+            
+            // Animate Toggle
+            if (isYearly) {
+                toggleDot.classList.add('translate-x-8');
+                toggleDot.classList.remove('translate-x-0');
+            } else {
+                toggleDot.classList.add('translate-x-0');
+                toggleDot.classList.remove('translate-x-8');
+            }
+
+            // Update Prices
+            amounts.forEach(el => {
+                const card = el.closest('.price-card');
+                const price = isYearly ? card.dataset.yearly : card.dataset.monthly;
+                
+                // Simple count up animation
+                let start = parseInt(el.innerText);
+                let end = parseInt(price);
+                let duration = 500;
+                let startTime = null;
+
+                function animate(currentTime) {
+                    if (!startTime) startTime = currentTime;
+                    let progress = (currentTime - startTime) / duration;
+                    if (progress > 1) progress = 1;
+                    
+                    el.innerText = Math.floor(start + (end - start) * progress);
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    }
+                }
+                requestAnimationFrame(animate);
+            });
+        });
+
+        // FAQ Toggle Logic
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                // Close all other FAQs
+                faqToggles.forEach(otherToggle => {
+                    if (otherToggle !== toggle) {
+                        otherToggle.nextElementSibling.classList.add('hidden');
+                        otherToggle.querySelector('i').classList.remove('rotate-180');
+                    }
+                });
+                
+                // Toggle current FAQ
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+    </script>
+</body>
+</html>

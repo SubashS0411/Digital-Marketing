@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard | Nexus SEO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #0f172a; }
+        .sidebar { 
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .card { background: #1e293b; border: 1px solid rgba(255,255,255,0.05); }
+        .card:hover { border-color: rgba(99, 102, 241, 0.3); }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+        .glow-indigo { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
+        .stat-card { transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-2px); }
+        
+        @media (max-width: 640px) {
+            .card { padding: 16px; }
+            .stat-card .text-2xl { font-size: 1.5rem; }
+            
+            /* Mobile Visibility Optimizations */
+            .text-xs { font-size: 0.875rem !important; } /* Increase tiny text */
+            .text-sm { font-size: 1rem !important; } /* Increase small text */
+            .w-5 { width: 1.5rem; height: 1.5rem; } /* Larger icons */
+            .h-5 { height: 1.5rem; width: 1.5rem; }
+            .p-2 { padding: 0.75rem; } /* Larger touch targets */
+            
+            /* Adjust chart containers */
+            .h-80 { height: 20rem; }
+            .h-64 { height: 18rem; }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .sidebar { left: auto; right: 0; border-left: 1px solid rgba(255,255,255,0.1); border-right: none; }
+        [dir="rtl"] .text-left { text-align: right; }
+        [dir="rtl"] .text-right { text-align: left; }
+        [dir="rtl"] .ml-auto { margin-left: 0; margin-right: auto; }
+        [dir="rtl"] .mr-auto { margin-right: 0; margin-left: auto; }
+    </style>
+</head>
+<body class="min-h-screen text-gray-100">
+    <!-- Mobile Header -->
+    <header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-700/50 px-4 py-3">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <button id="menuBtn" class="p-2 -ml-2 text-slate-300 hover:text-white active:scale-95 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <span class="text-lg font-bold text-white tracking-tight">NEXUS</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="dirToggle" class="p-2 rounded-lg border border-white/10 text-slate-400 hover:text-white hover:bg-white/5 transition-colors" title="Toggle RTL/LTR">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                </button>
+                <button class="p-2 hover:bg-slate-800 rounded-lg relative">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full"></span>
+                </button>
+                <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" class="w-8 h-8 rounded-full" alt="User">
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar --> shadow-lg shadow-indigo-500/20">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <span class="text-xl font-bold text-white">NEXUSm-indigo-500 to-cyan-500 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-white">DigiMarkPro</span>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="flex-1 space-y-1">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                        </svg>
+                        <span class="font-medium">Dashboard</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                        </svg>
+                        <span>Keywords</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                        </svg>
+                        <span>Backlinks</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <span>Reports</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+
+                <!-- User Profile -->
+                <div class="mt-auto pt-4 border-t border-slate-700/50">
+                    <div class="flex items-center gap-3 p-2">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" class="w-10 h-10 rounded-full" alt="User">
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-white truncate">John Doe</p>
+                            <p class="text-xs text-slate-400 truncate">Pro Plan</p>
+                        </div>
+                        <a href="index.html" class="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-rose-400 transition-colors" title="Logout">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Sidebar Overlay -->
+        <div id="sidebarOverlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 lg:hidden hidden"></div>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:ml-0 pt-16 lg:pt-0 min-h-screen">
+            <div class="p-4 lg:p-8 max-w-7xl mx-auto">
+                <!-- Header -->
+                <div class="mb-8">
+                    <h1 class="text-2xl lg:text-3xl font-bold text-white mb-2">Welcome back, John! 👋</h1>
+                    <p class="text-slate-400">Here's what's happening with your SEO performance today.</p>
+                </div>
+
+                <!-- KPI Snapshot Cards -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-semibold text-white">KPI Snapshot</h2>
+                        <span class="text-sm text-slate-400">Last 30 days</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Traffic Card -->
+                        <div class="card rounded-2xl p-5 stat-card">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-slate-400 text-sm font-medium">Traffic</span>
+                                <span class="text-emerald-400 text-xs font-medium bg-emerald-400/10 px-2 py-1 rounded-full">+12.5%</span>
+                            </div>
+                            <div class="text-2xl font-bold text-white mb-3">24,589</div>
+                            <div id="trafficSparkline" class="h-12"></div>
+                        </div>
+                        <!-- Conversions Card -->
+                        <div class="card rounded-2xl p-5 stat-card">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-slate-400 text-sm font-medium">Conversions</span>
+                                <span class="text-emerald-400 text-xs font-medium bg-emerald-400/10 px-2 py-1 rounded-full">+8.2%</span>
+                            </div>
+                            <div class="text-2xl font-bold text-white mb-3">1,429</div>
+                            <div id="conversionsSparkline" class="h-12"></div>
+                        </div>
+                        <!-- Retention Card -->
+                        <div class="card rounded-2xl p-5 stat-card">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-slate-400 text-sm font-medium">Retention</span>
+                                <span class="text-emerald-400 text-xs font-medium bg-emerald-400/10 px-2 py-1 rounded-full">+5.1%</span>
+                            </div>
+                            <div class="text-2xl font-bold text-white mb-3">68.4%</div>
+                            <div id="retentionSparkline" class="h-12"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Charts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <!-- Sessions by Track (Donut) -->
+                    <div class="card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-semibold text-white">Sessions by Track</h3>
+                            <span class="text-sm text-slate-400">Planned</span>
+                        </div>
+                        <div id="sessionsDonut" class="h-80"></div>
+                    </div>
+
+                    <!-- Networking Goals (Grouped Bar) -->
+                    <div class="card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-semibold text-white">Networking Goals</h3>
+                            <span class="text-sm text-slate-400">This week</span>
+                        </div>
+                        <div id="networkingGoals" class="h-80"></div>
+                    </div>
+                </div>
+
+                <!-- Traffic Overview -->
+                <div class="card rounded-2xl p-6 mb-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-white">Traffic Overview</h3>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-1.5 text-xs font-medium bg-indigo-500/20 text-indigo-400 rounded-lg">Monthly</button>
+                            <button class="px-3 py-1.5 text-xs font-medium text-slate-400 hover:bg-slate-700 rounded-lg">Weekly</button>
+                        </div>
+                    </div>
+                    <div id="trafficOverview" class="h-80"></div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Keyword Rankings -->
+                    <div class="card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-semibold text-white">Keyword Rankings</h3>
+                            <span class="text-sm text-slate-400">Top 10</span>
+                        </div>
+                        <div id="keywordRankings" class="h-64"></div>
+                    </div>
+
+                    <!-- Page Speed -->
+                    <div class="card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-semibold text-white">Page Speed</h3>
+                            <span class="text-sm text-slate-400">Core Web Vitals</span>
+                        </div>
+                        <div id="pageSpeed" class="h-64"></div>
+                    </div>
+
+                    <!-- Device Split -->
+                    <div class="card rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-semibold text-white">Device Split</h3>
+                            <span class="text-sm text-slate-400">Last 30 days</span>
+                        </div>
+                        <div id="deviceSplit" class="h-64"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const dirToggle = document.getElementById('dirToggle');
+        const root = document.documentElement;
+
+        const applyDirection = (dir) => {
+            root.setAttribute('dir', dir);
+            localStorage.setItem('digiDir', dir);
+            const isRTL = dir === 'rtl';
+            sidebar.classList.remove('-translate-x-full', 'translate-x-full');
+            sidebar.classList.add(isRTL ? 'translate-x-full' : '-translate-x-full');
+            sidebar.classList.remove('translate-x-0');
+            sidebarOverlay.classList.add('hidden');
+        };
+
+        applyDirection(localStorage.getItem('digiDir') || 'ltr');
+
+        const toggleSidebar = () => {
+            const isRTL = root.getAttribute('dir') === 'rtl';
+            const closedClass = isRTL ? 'translate-x-full' : '-translate-x-full';
+            sidebar.classList.toggle(closedClass);
+            sidebar.classList.toggle('translate-x-0');
+            sidebarOverlay.classList.toggle('hidden');
+        };
+
+        menuBtn?.addEventListener('click', toggleSidebar);
+        sidebarOverlay?.addEventListener('click', () => {
+            const isRTL = root.getAttribute('dir') === 'rtl';
+            sidebar.classList.add(isRTL ? 'translate-x-full' : '-translate-x-full');
+            sidebar.classList.remove('translate-x-0');
+            sidebarOverlay.classList.add('hidden');
+        });
+
+        dirToggle?.addEventListener('click', () => {
+            const next = root.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            applyDirection(next);
+        });
+
+        // Chart Colors
+        const colors = {
+            indigo: '#6366f1',
+            cyan: '#22d3ee',
+            emerald: '#34d399',
+            amber: '#fbbf24',
+            purple: '#a78bfa',
+            rose: '#fb7185'
+        };
+
+        // Traffic Sparkline
+        new ApexCharts(document.querySelector("#trafficSparkline"), {
+            series: [{ data: [31, 40, 28, 51, 42, 65, 58, 71, 64, 78] }],
+            chart: { type: 'line', height: 50, sparkline: { enabled: true } },
+            colors: [colors.cyan],
+            stroke: { curve: 'smooth', width: 2.5 },
+            tooltip: { enabled: false }
+        }).render();
+
+        // Conversions Sparkline
+        new ApexCharts(document.querySelector("#conversionsSparkline"), {
+            series: [{ data: [15, 22, 18, 29, 34, 41, 38, 45, 48, 52] }],
+            chart: { type: 'line', height: 50, sparkline: { enabled: true } },
+            colors: [colors.emerald],
+            stroke: { curve: 'smooth', width: 2.5 },
+            tooltip: { enabled: false }
+        }).render();
+
+        // Retention Sparkline
+        new ApexCharts(document.querySelector("#retentionSparkline"), {
+            series: [{ data: [58, 62, 59, 64, 61, 66, 63, 68, 65, 69] }],
+            chart: { type: 'line', height: 50, sparkline: { enabled: true } },
+            colors: [colors.amber],
+            stroke: { curve: 'smooth', width: 2.5 },
+            tooltip: { enabled: false }
+        }).render();
+
+        // Sessions by Track Donut
+        new ApexCharts(document.querySelector("#sessionsDonut"), {
+            series: [35, 28, 18, 12, 7],
+            chart: { type: 'donut', height: 320, background: 'transparent', fontFamily: 'Inter, sans-serif' },
+            colors: [colors.indigo, colors.cyan, colors.emerald, colors.amber, colors.purple],
+            labels: ['AI & ML', 'Cloud', 'Security', 'Web', 'Leadership'],
+            plotOptions: {
+                pie: {
+                    donut: { size: '65%', labels: { show: false } },
+                    expandOnClick: false
+                }
+            },
+            dataLabels: { enabled: false },
+            legend: { 
+                position: 'top', 
+                horizontalAlign: 'center',
+                labels: { colors: '#e5e7eb' }, 
+                fontSize: '12px',
+                markers: { width: 10, height: 10, radius: 10 },
+                itemMargin: { horizontal: 8, vertical: 4 }
+            },
+            stroke: { width: 4, colors: ['#1e293b'] },
+            tooltip: { theme: 'dark', y: { formatter: (val) => val + '%' } },
+            responsive: [
+                { breakpoint: 640, options: { chart: { height: 240 }, legend: { fontSize: '12px' } } }
+            ]
+        }).render();
+
+        // Networking Goals Bar
+        new ApexCharts(document.querySelector("#networkingGoals"), {
+            series: [
+                { name: 'Goal', data: [2, 2, 2, 2, 2] },
+                { name: 'Actual', data: [0.8, 1.8, 0.7, 2.8, 2.1] }
+            ],
+            chart: { type: 'bar', height: 320, background: 'transparent', toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
+            colors: [colors.purple, colors.cyan],
+            plotOptions: { bar: { borderRadius: 6, columnWidth: '60%' } },
+            dataLabels: { enabled: false },
+            xaxis: { 
+                categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], 
+                labels: { style: { colors: '#9ca3af', fontSize: '11px' } },
+                axisBorder: { show: false },
+                axisTicks: { show: false }
+            },
+            yaxis: { 
+                labels: { style: { colors: '#9ca3af', fontSize: '11px' } },
+                min: 0, max: 3.5, tickAmount: 4
+            },
+            grid: { borderColor: 'rgba(255,255,255,0.06)', strokeDashArray: 0 },
+            legend: { labels: { colors: '#e5e7eb' }, position: 'top', horizontalAlign: 'right', fontSize: '12px', markers: { width: 10, height: 10, radius: 10 } },
+            tooltip: { theme: 'dark' },
+            responsive: [
+                { breakpoint: 640, options: { chart: { height: 240 }, legend: { fontSize: '12px' }, xaxis: { labels: { style: { fontSize: '11px' } } }, yaxis: { labels: { style: { fontSize: '11px' } } } } }
+            ]
+        }).render();
+
+        // Traffic Overview Area
+        new ApexCharts(document.querySelector("#trafficOverview"), {
+            series: [
+                { name: 'Organic', data: [4427, 5538, 5712, 6124, 5834, 6548, 7215, 8134, 8957, 9218, 10538, 12458] },
+                { name: 'Direct', data: [1234, 1438, 1312, 1528, 1618, 1812, 2028, 2234, 2445, 2618, 2834, 3108] },
+                { name: 'Referral', data: [512, 648, 587, 712, 698, 834, 912, 1024, 1148, 1234, 1358, 1512] }
+            ],
+            chart: { type: 'area', height: 320, toolbar: { show: false }, background: 'transparent', fontFamily: 'Inter, sans-serif' },
+            colors: [colors.cyan, colors.purple, colors.emerald],
+            dataLabels: { enabled: false },
+            stroke: { curve: 'smooth', width: 2.5 },
+            fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.35, opacityTo: 0.05, stops: [0, 90, 100] } },
+            xaxis: { 
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 
+                labels: { style: { colors: '#9ca3af', fontSize: '11px' } },
+                axisBorder: { show: false },
+                axisTicks: { show: false }
+            },
+            yaxis: { labels: { style: { colors: '#9ca3af', fontSize: '11px' }, formatter: (val) => (val/1000).toFixed(0) + 'K' } },
+            grid: { borderColor: 'rgba(255,255,255,0.06)', strokeDashArray: 0 },
+            legend: { labels: { colors: '#e5e7eb' }, position: 'top', horizontalAlign: 'right', fontSize: '12px', markers: { width: 8, height: 8, radius: 8 } },
+            tooltip: { theme: 'dark', shared: true },
+            responsive: [
+                { breakpoint: 640, options: { chart: { height: 240 }, legend: { fontSize: '12px' }, xaxis: { labels: { style: { fontSize: '11px' } } }, yaxis: { labels: { style: { fontSize: '11px' } } } } }
+            ]
+        }).render();
+
+        // Keyword Rankings Line
+        new ApexCharts(document.querySelector("#keywordRankings"), {
+            series: [{ name: 'Position', data: [18, 14, 11, 8, 6, 5, 4, 3.5, 3, 2.8] }],
+            chart: { type: 'line', height: 260, toolbar: { show: false }, background: 'transparent', fontFamily: 'Inter, sans-serif' },
+            colors: [colors.emerald],
+            stroke: { curve: 'smooth', width: 3 },
+            markers: { size: 0, hover: { size: 5 } },
+            xaxis: { 
+                categories: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10'], 
+                labels: { style: { colors: '#9ca3af', fontSize: '10px' } },
+                axisBorder: { show: false },
+                axisTicks: { show: false }
+            },
+            yaxis: { reversed: true, min: 1, max: 20, labels: { style: { colors: '#9ca3af', fontSize: '10px' }, formatter: (val) => '#' + Math.round(val) } },
+            grid: { borderColor: 'rgba(255,255,255,0.06)', strokeDashArray: 0 },
+            tooltip: { theme: 'dark', y: { formatter: (val) => 'Position #' + val } },
+            responsive: [
+                { breakpoint: 640, options: { chart: { height: 220 }, xaxis: { labels: { style: { fontSize: '11px' } } }, yaxis: { labels: { style: { fontSize: '11px' } } } } }
+            ]
+        }).render();
+
+        // Page Speed Radial
+        new ApexCharts(document.querySelector("#pageSpeed"), {
+            series: [94, 82, 88],
+            chart: { type: 'radialBar', height: 260, background: 'transparent', fontFamily: 'Inter, sans-serif' },
+            colors: [colors.emerald, colors.amber, colors.cyan],
+            plotOptions: {
+                radialBar: {
+                    hollow: { size: '40%' },
+                    track: { background: 'rgba(255,255,255,0.08)', strokeWidth: '100%', margin: 5 },
+                    dataLabels: { 
+                        name: { fontSize: '11px', color: '#9ca3af', offsetY: 18 }, 
+                        value: { fontSize: '18px', color: '#fff', fontWeight: '600', offsetY: -12, formatter: (val) => val + '%' }, 
+                        total: { show: true, label: 'Average', color: '#9ca3af', fontSize: '11px', formatter: () => '88%' } 
+                    }
+                }
+            },
+            labels: ['FCP', 'LCP', 'CLS'],
+            stroke: { lineCap: 'round' },
+            responsive: [
+                { breakpoint: 640, options: { chart: { height: 220 }, plotOptions: { radialBar: { hollow: { size: '45%' }, dataLabels: { value: { fontSize: '16px' }, name: { fontSize: '11px' }, total: { fontSize: '11px' } } } } } }
+            ]
+        }).render();
+
+        // Device Split Donut
+        new ApexCharts(document.querySelector("#deviceSplit"), {
+            series: [55, 32, 13],
+            chart: { type: 'donut', height: 260, background: 'transparent', fontFamily: 'Inter, sans-serif' },
+            colors: [colors.indigo, colors.cyan, colors.amber],
+            labels: ['Mobile', 'Desktop', 'Tablet'],
+            plotOptions: { pie: { donut: { size: '60%' }, expandOnClick: false } },
+            dataLabels: { enabled: false },
+            legend: { position: 'bottom', labels: { colors: '#e5e7eb' }, fontSize: '11px', markers: { width: 8, height: 8, radius: 8 } },
+            stroke: { width: 3, colors: ['#1e293b'] },
+            tooltip: { theme: 'dark', y: { formatter: (val) => val + '%' } },
+            responsive: [
+                { breakpoint: 640, options: { chart: { height: 220 }, plotOptions: { pie: { donut: { size: '60%' } } }, legend: { fontSize: '11px' } } }
+            ]
+        }).render();
+    </script>
+</body>
+</html>
