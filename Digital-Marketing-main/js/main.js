@@ -1,6 +1,7 @@
 // RTL Toggle Logic
 document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('rtl-toggle');
+    const toggleBtnMobile = document.getElementById('rtl-toggle-mobile');
     const html = document.documentElement;
     
     // Check local storage
@@ -8,8 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
     html.setAttribute('dir', currentDir);
     updateFont(currentDir);
 
+    // Desktop RTL toggle
     if(toggleBtn) {
         toggleBtn.addEventListener('click', () => {
+            const newDir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', newDir);
+            localStorage.setItem('dir', newDir);
+            updateFont(newDir);
+        });
+    }
+
+    // Mobile RTL toggle
+    if(toggleBtnMobile) {
+        toggleBtnMobile.addEventListener('click', () => {
             const newDir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
             html.setAttribute('dir', newDir);
             localStorage.setItem('dir', newDir);
@@ -211,11 +223,14 @@ function initMobileMenu() {
 function openMobileMenu(menu) {
     if(!menu) return;
     
-    // Handle different menu structures
-    if(menu.classList.contains('mobile-menu')) {
+    // Handle different menu structures - both mobile-menu and mobile-menu-v2
+    if(menu.classList.contains('mobile-menu') || menu.classList.contains('mobile-menu-v2')) {
         menu.classList.add('active');
     }
+    
+    // Always remove translate-x-full to show menu
     menu.classList.remove('translate-x-full');
+    menu.style.transform = 'translateX(0)';
     
     document.body.style.overflow = 'hidden';
     document.body.style.touchAction = 'none';
@@ -225,11 +240,14 @@ function closeMobileMenu(menu) {
     if(!menu) return;
     const mobileMenu = menu || document.getElementById('mobile-menu');
     
-    // Handle different menu structures
-    if(mobileMenu.classList.contains('mobile-menu')) {
+    // Handle different menu structures - both mobile-menu and mobile-menu-v2
+    if(mobileMenu.classList.contains('mobile-menu') || mobileMenu.classList.contains('mobile-menu-v2')) {
         mobileMenu.classList.remove('active');
     }
+    
+    // Always add translate-x-full to hide menu
     mobileMenu.classList.add('translate-x-full');
+    mobileMenu.style.transform = '';
     
     document.body.style.overflow = '';
     document.body.style.touchAction = '';

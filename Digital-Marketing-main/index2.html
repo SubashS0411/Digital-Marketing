@@ -186,9 +186,11 @@
         
         /* Navigation */
         .nav-v2 {
-            background: rgba(10, 5, 20, 0.8);
+            background: rgba(26, 10, 46, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(191, 0, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(191, 0, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
         
         /* Scroll reveal */
@@ -239,7 +241,11 @@
         }
         
         .mobile-menu-v2.active {
-            transform: translateX(0);
+            transform: translateX(0) !important;
+        }
+        
+        #mobile-menu {
+            z-index: 100;
         }
         
         /* Bento Grid */
@@ -261,6 +267,33 @@
             .bento-item-1, .bento-item-2, .bento-item-3, .bento-item-4, .bento-item-5, .bento-item-6 {
                 grid-column: span 12;
             }
+        }
+        
+        /* RTL Support */
+        [dir="rtl"] .mobile-menu-v2 {
+            transform: translateX(-100%);
+        }
+        [dir="rtl"] .mobile-menu-v2.active {
+            transform: translateX(0);
+        }
+        [dir="rtl"] .timeline-item {
+            padding-left: 0;
+            padding-right: 40px;
+        }
+        [dir="rtl"] .timeline-item::before {
+            left: auto;
+            right: 0;
+        }
+        [dir="rtl"] .timeline-dot {
+            left: auto;
+            right: -6px;
+        }
+        [dir="rtl"] .text-left {
+            text-align: right;
+        }
+        [dir="rtl"] .mr-2, [dir="rtl"] .mr-3 {
+            margin-right: 0;
+            margin-left: 0.5rem;
         }
     </style>
 </head>
@@ -303,7 +336,7 @@
                     </button>
                     <div class="absolute top-full left-0 mt-4 w-48 glass-card p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                         <a href="admin-dashboard.html" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white text-sm transition-colors">Admin Panel</a>
-                        <a href="user-dashboard.html" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white text-sm transition-colors">User Portal</a>
+                        <a href="user-dashboard.html" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white text-sm transition-colors">User Dashboard</a>
                     </div>
                 </div>
                 <a href="case-studies.html" class="text-gray-300 hover:text-white transition-colors text-sm tracking-wide">Work</a>
@@ -311,6 +344,9 @@
             </div>
 
             <div class="flex items-center gap-4">
+                <button id="rtl-toggle" class="w-10 h-10 rounded-full border border-pink-500/30 bg-pink-500/10 flex items-center justify-center hover:bg-pink-500/20 transition-all" title="Toggle RTL/LTR">
+                    <i class="fa-solid fa-globe text-pink-400"></i>
+                </button>
                 <a href="contact.html" class="hidden lg:block btn-neon text-sm px-6 py-3">
                     Let's Talk
                 </a>
@@ -320,19 +356,7 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu-v2 fixed inset-0 z-[100] flex flex-col lg:hidden">
-            <div class="flex justify-between items-center p-5 border-b border-white/10">
-                <a href="index2.html" class="text-xl font-bold flex items-center gap-2">
-                    <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-500 rounded-lg flex items-center justify-center">
-                        <i class="fa-solid fa-bolt text-white text-sm"></i>
-                    </div>
-                    <span class="gradient-neon">NEXUS</span>
-                </a>
-                <button id="close-menu-btn" class="w-10 h-10 flex items-center justify-center text-white text-xl">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
+        <!-- Mobile Menu -->\n        <div id=\"mobile-menu\" class=\"mobile-menu-v2 fixed inset-0 z-[100] flex flex-col lg:hidden bg-gradient-to-b from-[#1a0a2e] to-[#0f0515]\">\n            <div class=\"flex justify-between items-center p-5 border-b border-white/10 bg-black/30\">\n                <a href=\"index2.html\" class=\"text-xl font-bold flex items-center gap-2\">\n                    <div class=\"w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-500 rounded-lg flex items-center justify-center\">\n                        <i class=\"fa-solid fa-bolt text-white text-sm\"></i>\n                    </div>\n                    <span class=\"gradient-neon\">NEXUS</span>\n                </a>\n                <div class=\"flex items-center gap-3\">\n                    <button id=\"rtl-toggle-mobile\" class=\"w-10 h-10 rounded-full border border-pink-500/30 bg-pink-500/10 flex items-center justify-center hover:bg-pink-500/20 transition-all\" title=\"Toggle RTL/LTR\">\n                        <i class=\"fa-solid fa-globe text-pink-400\"></i>\n                    </button>\n                    <button id=\"close-menu-btn\" class=\"w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white text-xl hover:bg-white/10 transition-all\">\n                        <i class=\"fa-solid fa-xmark\"></i>\n                    </button>\n                </div>\n            </div>
             <div class="flex-1 overflow-y-auto p-5">
                 <div class="space-y-2">
                     <a href="index.html" class="block px-4 py-3 rounded-xl hover:bg-white/5 text-gray-300">Home Dark Blue</a>
@@ -869,6 +893,17 @@
                 document.body.style.overflow = '';
             });
         });
+        
+        // RTL Toggle for mobile menu button
+        const rtlToggleMobile = document.getElementById('rtl-toggle-mobile');
+        if(rtlToggleMobile) {
+            rtlToggleMobile.addEventListener('click', () => {
+                const html = document.documentElement;
+                const newDir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+                html.setAttribute('dir', newDir);
+                localStorage.setItem('dir', newDir);
+            });
+        }
         
         // Scroll reveal
         function revealOnScroll() {

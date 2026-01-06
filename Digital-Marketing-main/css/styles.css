@@ -521,10 +521,11 @@ body.theme-elegant .btn-primary:hover {
 }
 
 /* ========== MOBILE MENU GLOBAL ========== */
-.mobile-menu-overlay {
+.mobile-menu-overlay,
+#mobile-menu {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.98);
+  background: linear-gradient(180deg, #0a1628 0%, #0d1f3c 50%, #0f172a 100%) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 100;
@@ -536,7 +537,8 @@ body.theme-elegant .btn-primary:hover {
   padding: 0;
 }
 
-.mobile-menu-overlay.active {
+.mobile-menu-overlay.active,
+#mobile-menu:not(.translate-x-full) {
   transform: translateX(0);
 }
 

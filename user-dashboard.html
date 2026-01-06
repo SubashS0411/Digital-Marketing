@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,143 +8,302 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
-        * { font-family: 'Inter', sans-serif; }
-        body { background: #0f172a; }
-        .sidebar { 
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+        }
+
+        .sidebar {
             background: rgba(15, 23, 42, 0.98);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(255,255,255,0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .card { background: #1e293b; border: 1px solid rgba(255,255,255,0.05); }
-        .card:hover { border-color: rgba(99, 102, 241, 0.3); }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #1e293b; }
-        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
-        .glow-indigo { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
-        .stat-card { transition: all 0.3s ease; }
-        .stat-card:hover { transform: translateY(-2px); }
-        
+
+        .card {
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+
+        .glow-indigo {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 640px) {
-            .card { padding: 16px; }
-            .stat-card .text-2xl { font-size: 1.5rem; }
-            
+            .card {
+                padding: 16px;
+            }
+
+            .stat-card .text-2xl {
+                font-size: 1.5rem;
+            }
+
             /* Mobile Visibility Optimizations */
-            .text-xs { font-size: 0.875rem !important; } /* Increase tiny text */
-            .text-sm { font-size: 1rem !important; } /* Increase small text */
-            .w-5 { width: 1.5rem; height: 1.5rem; } /* Larger icons */
-            .h-5 { height: 1.5rem; width: 1.5rem; }
-            .p-2 { padding: 0.75rem; } /* Larger touch targets */
-            
+            .text-xs {
+                font-size: 0.875rem !important;
+            }
+
+            /* Increase tiny text */
+            .text-sm {
+                font-size: 1rem !important;
+            }
+
+            /* Increase small text */
+            .w-5 {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            /* Larger icons */
+            .h-5 {
+                height: 1.5rem;
+                width: 1.5rem;
+            }
+
+            .p-2 {
+                padding: 0.75rem;
+            }
+
+            /* Larger touch targets */
+
             /* Adjust chart containers */
-            .h-80 { height: 20rem; }
-            .h-64 { height: 18rem; }
+            .h-80 {
+                height: 20rem;
+            }
+
+            .h-64 {
+                height: 18rem;
+            }
         }
 
         /* RTL Support */
-        [dir="rtl"] .sidebar { left: auto; right: 0; border-left: 1px solid rgba(255,255,255,0.1); border-right: none; }
-        [dir="rtl"] .text-left { text-align: right; }
-        [dir="rtl"] .text-right { text-align: left; }
-        [dir="rtl"] .ml-auto { margin-left: 0; margin-right: auto; }
-        [dir="rtl"] .mr-auto { margin-right: 0; margin-left: auto; }
+        [dir="rtl"] .sidebar {
+            left: auto;
+            right: 0;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: none;
+        }
+
+        [dir="rtl"] .text-left {
+            text-align: right;
+        }
+
+        [dir="rtl"] .text-right {
+            text-align: left;
+        }
+
+        [dir="rtl"] .ml-auto {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        [dir="rtl"] .mr-auto {
+            margin-right: 0;
+            margin-left: auto;
+        }
     </style>
 </head>
+
 <body class="min-h-screen text-gray-100">
     <!-- Mobile Header -->
-    <header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-700/50 px-4 py-3">
+    <header
+        class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-700/50 px-4 py-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <button id="menuBtn" class="p-2 -ml-2 text-slate-300 hover:text-white active:scale-95 transition-transform">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <button id="menuBtn"
+                    class="p-2 -ml-2 text-slate-300 hover:text-white active:scale-95 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
                 </button>
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+                    <div
+                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                                clip-rule="evenodd" />
+                        </svg>
                     </div>
                     <span class="text-lg font-bold text-white tracking-tight">NEXUS</span>
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                <button id="dirToggle" class="p-2 rounded-lg border border-white/10 text-slate-400 hover:text-white hover:bg-white/5 transition-colors" title="Toggle RTL/LTR">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                <button id="dirToggle"
+                    class="p-2 rounded-lg border border-white/10 text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+                    title="Toggle RTL/LTR">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    </svg>
                 </button>
                 <button class="p-2 hover:bg-slate-800 rounded-lg relative">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                     </svg>
                     <span class="absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full"></span>
                 </button>
-                <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" class="w-8 h-8 rounded-full" alt="User">
+                <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff"
+                    class="w-8 h-8 rounded-full" alt="User">
             </div>
         </div>
     </header>
 
     <div class="flex">
         <!-- Sidebar -->
-        <aside id="sidebar" class="sidebar fixed lg:sticky top-0 left-0 h-screen w-64 z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+        <aside id="sidebar"
+            class="sidebar fixed lg:sticky top-0 left-0 h-screen w-64 z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
             <div class="flex flex-col h-full p-4">
                 <!-- Logo -->
                 <div class="flex items-center gap-3 px-2 py-4 mb-6">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                                clip-rule="evenodd" />
+                        </svg>
                     </div>
                     <span class="text-xl font-bold text-white">NEXUS</span>
                 </div>
 
                 <!-- Navigation -->
                 <nav class="flex-1 space-y-1">
-                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                    <a href="#"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                         </svg>
                         <span class="font-medium">Dashboard</span>
                     </a>
-                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                    <a href="#"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
                         <span>Analytics</span>
                     </a>
-                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                    <a href="#"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                         </svg>
                         <span>Keywords</span>
                     </a>
-                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                    <a href="#"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                         </svg>
                         <span>Backlinks</span>
                     </a>
-                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                    <a href="#"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         <span>Reports</span>
                     </a>
-                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                    <a href="#"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                         <span>Settings</span>
                     </a>
+
+                    <!-- Back to Website -->
+                    <div class="pt-4 mt-4 border-t border-white/5">
+                        <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Website</p>
+                        <a href="index.html"
+                            class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            <span class="font-medium">Home 1</span>
+                        </a>
+                        <a href="index2.html"
+                            class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            <span class="font-medium">Home 2</span>
+                        </a>
+                    </div>
                 </nav>
+
+                <!-- RTL Toggle -->
+                <div class="px-2 py-3 border-t border-slate-700/50">
+                    <button id="sidebarDirToggle"
+                        class="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors"
+                        title="Toggle RTL/LTR">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                        <span>Toggle RTL/LTR</span>
+                    </button>
+                </div>
 
                 <!-- User Profile -->
                 <div class="mt-auto pt-4 border-t border-slate-700/50">
                     <div class="flex items-center gap-3 p-2">
-                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" class="w-10 h-10 rounded-full" alt="User">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff"
+                            class="w-10 h-10 rounded-full" alt="User">
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium text-white truncate">John Doe</p>
                             <p class="text-xs text-slate-400 truncate">Pro Plan</p>
                         </div>
-                        <a href="index.html" class="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-rose-400 transition-colors" title="Logout">
+                        <a href="index.html"
+                            class="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-rose-400 transition-colors"
+                            title="Logout">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>
                         </a>
                     </div>
@@ -174,7 +334,8 @@
                         <div class="card rounded-2xl p-5 stat-card">
                             <div class="flex items-center justify-between mb-4">
                                 <span class="text-slate-400 text-sm font-medium">Traffic</span>
-                                <span class="text-emerald-400 text-xs font-medium bg-emerald-400/10 px-2 py-1 rounded-full">+12.5%</span>
+                                <span
+                                    class="text-emerald-400 text-xs font-medium bg-emerald-400/10 px-2 py-1 rounded-full">+12.5%</span>
                             </div>
                             <div class="text-2xl font-bold text-white mb-3">24,589</div>
                             <div id="trafficSparkline" class="h-12"></div>
@@ -183,7 +344,8 @@
                         <div class="card rounded-2xl p-5 stat-card">
                             <div class="flex items-center justify-between mb-4">
                                 <span class="text-slate-400 text-sm font-medium">Conversions</span>
-                                <span class="text-emerald-400 text-xs font-medium bg-emerald-400/10 px-2 py-1 rounded-full">+8.2%</span>
+                                <span
+                                    class="text-emerald-400 text-xs font-medium bg-emerald-400/10 px-2 py-1 rounded-full">+8.2%</span>
                             </div>
                             <div class="text-2xl font-bold text-white mb-3">1,429</div>
                             <div id="conversionsSparkline" class="h-12"></div>
@@ -192,7 +354,8 @@
                         <div class="card rounded-2xl p-5 stat-card">
                             <div class="flex items-center justify-between mb-4">
                                 <span class="text-slate-400 text-sm font-medium">Retention</span>
-                                <span class="text-emerald-400 text-xs font-medium bg-emerald-400/10 px-2 py-1 rounded-full">+5.1%</span>
+                                <span
+                                    class="text-emerald-400 text-xs font-medium bg-emerald-400/10 px-2 py-1 rounded-full">+5.1%</span>
                             </div>
                             <div class="text-2xl font-bold text-white mb-3">68.4%</div>
                             <div id="retentionSparkline" class="h-12"></div>
@@ -226,8 +389,10 @@
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-lg font-semibold text-white">Traffic Overview</h3>
                         <div class="flex gap-2">
-                            <button class="px-3 py-1.5 text-xs font-medium bg-indigo-500/20 text-indigo-400 rounded-lg">Monthly</button>
-                            <button class="px-3 py-1.5 text-xs font-medium text-slate-400 hover:bg-slate-700 rounded-lg">Weekly</button>
+                            <button
+                                class="px-3 py-1.5 text-xs font-medium bg-indigo-500/20 text-indigo-400 rounded-lg">Monthly</button>
+                            <button
+                                class="px-3 py-1.5 text-xs font-medium text-slate-400 hover:bg-slate-700 rounded-lg">Weekly</button>
                         </div>
                     </div>
                     <div id="trafficOverview" class="h-80"></div>
@@ -307,6 +472,13 @@
             applyDirection(next);
         });
 
+        // Sidebar RTL Toggle (desktop)
+        const sidebarDirToggle = document.getElementById('sidebarDirToggle');
+        sidebarDirToggle?.addEventListener('click', () => {
+            const next = root.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            applyDirection(next);
+        });
+
         // Chart Colors
         const colors = {
             indigo: '#6366f1',
@@ -357,10 +529,10 @@
                 }
             },
             dataLabels: { enabled: false },
-            legend: { 
-                position: 'top', 
+            legend: {
+                position: 'top',
                 horizontalAlign: 'center',
-                labels: { colors: '#e5e7eb' }, 
+                labels: { colors: '#e5e7eb' },
                 fontSize: '12px',
                 markers: { width: 10, height: 10, radius: 10 },
                 itemMargin: { horizontal: 8, vertical: 4 }
@@ -382,13 +554,13 @@
             colors: [colors.purple, colors.cyan],
             plotOptions: { bar: { borderRadius: 6, columnWidth: '60%' } },
             dataLabels: { enabled: false },
-            xaxis: { 
-                categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], 
+            xaxis: {
+                categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
                 labels: { style: { colors: '#9ca3af', fontSize: '11px' } },
                 axisBorder: { show: false },
                 axisTicks: { show: false }
             },
-            yaxis: { 
+            yaxis: {
                 labels: { style: { colors: '#9ca3af', fontSize: '11px' } },
                 min: 0, max: 3.5, tickAmount: 4
             },
@@ -412,13 +584,13 @@
             dataLabels: { enabled: false },
             stroke: { curve: 'smooth', width: 2.5 },
             fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.35, opacityTo: 0.05, stops: [0, 90, 100] } },
-            xaxis: { 
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 
+            xaxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 labels: { style: { colors: '#9ca3af', fontSize: '11px' } },
                 axisBorder: { show: false },
                 axisTicks: { show: false }
             },
-            yaxis: { labels: { style: { colors: '#9ca3af', fontSize: '11px' }, formatter: (val) => (val/1000).toFixed(0) + 'K' } },
+            yaxis: { labels: { style: { colors: '#9ca3af', fontSize: '11px' }, formatter: (val) => (val / 1000).toFixed(0) + 'K' } },
             grid: { borderColor: 'rgba(255,255,255,0.06)', strokeDashArray: 0 },
             legend: { labels: { colors: '#e5e7eb' }, position: 'top', horizontalAlign: 'right', fontSize: '12px', markers: { width: 8, height: 8, radius: 8 } },
             tooltip: { theme: 'dark', shared: true },
@@ -434,8 +606,8 @@
             colors: [colors.emerald],
             stroke: { curve: 'smooth', width: 3 },
             markers: { size: 0, hover: { size: 5 } },
-            xaxis: { 
-                categories: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10'], 
+            xaxis: {
+                categories: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10'],
                 labels: { style: { colors: '#9ca3af', fontSize: '10px' } },
                 axisBorder: { show: false },
                 axisTicks: { show: false }
@@ -457,10 +629,10 @@
                 radialBar: {
                     hollow: { size: '40%' },
                     track: { background: 'rgba(255,255,255,0.08)', strokeWidth: '100%', margin: 5 },
-                    dataLabels: { 
-                        name: { fontSize: '11px', color: '#9ca3af', offsetY: 18 }, 
-                        value: { fontSize: '18px', color: '#fff', fontWeight: '600', offsetY: -12, formatter: (val) => val + '%' }, 
-                        total: { show: true, label: 'Average', color: '#9ca3af', fontSize: '11px', formatter: () => '88%' } 
+                    dataLabels: {
+                        name: { fontSize: '11px', color: '#9ca3af', offsetY: 18 },
+                        value: { fontSize: '18px', color: '#fff', fontWeight: '600', offsetY: -12, formatter: (val) => val + '%' },
+                        total: { show: true, label: 'Average', color: '#9ca3af', fontSize: '11px', formatter: () => '88%' }
                     }
                 }
             },
@@ -488,4 +660,5 @@
         }).render();
     </script>
 </body>
+
 </html>

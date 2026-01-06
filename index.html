@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,174 +13,193 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
+
 <body class="bg-dark text-light font-sans antialiased selection:bg-primary selection:text-dark">
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 transition-all duration-300 bg-transparent py-2 sm:py-3 md:py-4" id="navbar">
-        <div class="container mx-auto px-3 sm:px-4 md:px-6 flex justify-between items-center">
-            <a href="index.html" class="text-lg sm:text-xl md:text-2xl font-bold tracking-tighter flex items-center gap-1.5 sm:gap-2">
-                <div class="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                    <i class="fa-solid fa-bolt text-white text-xs sm:text-sm"></i>
+    <!-- Universal Navbar -->
+    <nav class="nav-wrapper py-4" id="navbar">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold tracking-tight flex items-center gap-2">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+                    <i class="fa-solid fa-bolt text-white"></i>
                 </div>
                 <span class="gradient-text">NEXUS</span>
             </a>
-            
+
             <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center gap-4 xl:gap-8">
-                <!-- Home Dropdown -->
+            <div class="hidden lg:flex items-center gap-8">
+                <!-- Dropdown: Home -->
                 <div class="relative group">
-                    <button class="hover:text-primary transition-colors text-sm uppercase tracking-widest flex items-center gap-1 py-2">
-                        Home <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    <button
+                        class="flex items-center gap-1 text-sm font-medium text-gray-300 hover:text-white transition-colors py-2">
+                        Home <i
+                            class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform"></i>
                     </button>
-                    <div class="absolute top-full left-0 mt-2 w-48 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden">
-                        <a href="index.html" class="block px-4 py-3 hover:bg-white/10 hover:text-primary transition-colors text-sm border-b border-white/5">Home Version 1</a>
-                        <a href="index2.html" class="block px-4 py-3 hover:bg-white/10 hover:text-primary transition-colors text-sm">Home Version 2</a>
+                    <div
+                        class="absolute top-full left-0 mt-2 w-48 bg-[#0f172a] border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
+                        <a href="index.html"
+                            class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Home
+                            1</a>
+                        <a href="index2.html"
+                            class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Home
+                            2</a>
                     </div>
                 </div>
 
-                <a href="about.html" class="hover:text-primary transition-colors text-sm uppercase tracking-widest">About</a>
-                <a href="services.html" class="hover:text-primary transition-colors text-sm uppercase tracking-widest">Services</a>
-                
-                <!-- Dashboard Dropdown -->
+                <a href="about.html"
+                    class="text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
+                <a href="services.html"
+                    class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Services</a>
+
+                <!-- Dropdown: Dashboard -->
                 <div class="relative group">
-                    <button class="hover:text-primary transition-colors text-sm uppercase tracking-widest flex items-center gap-1 py-2">
-                        Dashboard <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    <button
+                        class="flex items-center gap-1 text-sm font-medium text-gray-300 hover:text-white transition-colors py-2">
+                        Dashboard <i
+                            class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform"></i>
                     </button>
-                    <div class="absolute top-full left-0 mt-2 w-48 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden">
-                        <a href="admin-dashboard.html" class="block px-4 py-3 hover:bg-white/10 hover:text-primary transition-colors text-sm border-b border-white/5">Admin Dashboard</a>
-                        <a href="user-dashboard.html" class="block px-4 py-3 hover:bg-white/10 hover:text-primary transition-colors text-sm">User Dashboard</a>
+                    <div
+                        class="absolute top-full left-0 mt-2 w-48 bg-[#0f172a] border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
+                        <a href="admin-dashboard.html"
+                            class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Admin
+                            Panel</a>
+                        <a href="user-dashboard.html"
+                            class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">User
+                            Dashboard</a>
                     </div>
                 </div>
 
-                <a href="case-studies.html" class="hover:text-primary transition-colors text-sm uppercase tracking-widest">Work</a>
-                <a href="pricing.html" class="hover:text-primary transition-colors text-sm uppercase tracking-widest">Pricing</a>
+                <a href="case-studies.html"
+                    class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Work</a>
+                <a href="pricing.html"
+                    class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Pricing</a>
             </div>
 
-            <div class="flex items-center gap-2 sm:gap-3 md:gap-4">
-                <button id="rtl-toggle" class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full glass flex items-center justify-center hover:bg-white/10 transition-all" title="Toggle RTL/LTR">
-                    <i class="fa-solid fa-globe text-primary text-sm sm:text-base"></i>
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <button id="rtl-toggle"
+                    class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-globe"></i>
                 </button>
-                <a href="contact.html" class="hidden lg:block px-4 xl:px-6 py-2 xl:py-2.5 bg-primary text-dark text-sm xl:text-base font-bold rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(0,240,255,0.3)]">
+                <a href="contact.html"
+                    class="hidden lg:block px-6 py-2.5 bg-primary hover:bg-primary/90 text-dark font-bold rounded-full transition-all shadow-lg shadow-primary/25 text-sm">
                     Get Started
                 </a>
-                
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="lg:hidden w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-white text-lg sm:text-xl rounded-full hover:bg-white/10 transition-all active:scale-95">
+                <button id="mobile-menu-btn"
+                    class="lg:hidden w-10 h-10 flex items-center justify-center text-white text-xl">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
+    </nav>
 
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-black/98 backdrop-blur-xl z-[100] transform translate-x-full flex flex-col lg:hidden" style="transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
-            <!-- Header -->
-            <div class="flex justify-between items-center p-4 sm:p-5 border-b border-white/10 safe-area-top">
-                <a href="index.html" class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                    <div class="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                        <i class="fa-solid fa-bolt text-white text-xs"></i>
-                    </div>
-                    NEXUS
-                </a>
-                <button id="close-menu-btn" class="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-white text-xl sm:text-2xl rounded-full hover:bg-white/10 active:bg-white/20 transition-all">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            
-            <!-- Menu Content -->
-            <div class="flex-1 overflow-y-auto p-4 sm:p-5 overscroll-contain">
-                <div class="flex flex-col gap-1">
-                    <!-- Home Section -->
-                    <div class="border-b border-white/5 pb-3 mb-2">
-                        <p class="text-gray-500 text-[10px] sm:text-xs uppercase tracking-widest mb-2 sm:mb-3 px-3 sm:px-4">Home</p>
-                        <a href="index.html" class="flex items-center gap-3 px-3 sm:px-4 py-3.5 sm:py-3 text-white text-sm sm:text-base hover:bg-white/5 active:bg-white/10 rounded-xl transition-all">
-                            <i class="fa-solid fa-bolt text-primary w-5 text-center"></i> Home V1
-                        </a>
-                        <a href="index2.html" class="flex items-center gap-3 px-3 sm:px-4 py-3.5 sm:py-3 text-white text-sm sm:text-base hover:bg-white/5 active:bg-white/10 rounded-xl transition-all">
-                            <i class="fa-solid fa-star text-secondary w-5 text-center"></i> Home V2
-                        </a>
-                    </div>
-                    
-                    <!-- Main Links -->
-                    <a href="about.html" class="flex items-center gap-3 px-3 sm:px-4 py-3.5 sm:py-3 text-white text-sm sm:text-base hover:bg-white/5 active:bg-white/10 rounded-xl transition-all">
-                        <i class="fa-solid fa-info-circle text-blue-400 w-5 text-center"></i> About
-                    </a>
-                    <a href="services.html" class="flex items-center gap-3 px-3 sm:px-4 py-3.5 sm:py-3 text-white text-sm sm:text-base hover:bg-white/5 active:bg-white/10 rounded-xl transition-all">
-                        <i class="fa-solid fa-cogs text-green-400 w-5 text-center"></i> Services
-                    </a>
-                    
-                    <!-- Dashboard Section -->
-                    <div class="border-t border-white/5 pt-3 mt-2">
-                        <p class="text-gray-500 text-[10px] sm:text-xs uppercase tracking-widest mb-2 sm:mb-3 px-3 sm:px-4">Dashboards</p>
-                        <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 sm:px-4 py-3.5 sm:py-3 text-white text-sm sm:text-base hover:bg-white/5 active:bg-white/10 rounded-xl transition-all">
-                            <i class="fa-solid fa-gauge-high text-purple-400 w-5 text-center"></i> Admin Dashboard
-                        </a>
-                        <a href="user-dashboard.html" class="flex items-center gap-3 px-3 sm:px-4 py-3.5 sm:py-3 text-white text-sm sm:text-base hover:bg-white/5 active:bg-white/10 rounded-xl transition-all">
-                            <i class="fa-solid fa-user text-cyan-400 w-5 text-center"></i> User Dashboard
-                        </a>
-                    </div>
-                    
-                    <!-- Other Links -->
-                    <div class="border-t border-white/5 pt-3 mt-2">
-                        <a href="case-studies.html" class="flex items-center gap-3 px-3 sm:px-4 py-3.5 sm:py-3 text-white text-sm sm:text-base hover:bg-white/5 active:bg-white/10 rounded-xl transition-all">
-                            <i class="fa-solid fa-briefcase text-orange-400 w-5 text-center"></i> Work
-                        </a>
-                        <a href="pricing.html" class="flex items-center gap-3 px-3 sm:px-4 py-3.5 sm:py-3 text-white text-sm sm:text-base hover:bg-white/5 active:bg-white/10 rounded-xl transition-all">
-                            <i class="fa-solid fa-tags text-pink-400 w-5 text-center"></i> Pricing
-                        </a>
-                        <a href="contact.html" class="flex items-center gap-3 px-3 sm:px-4 py-3.5 sm:py-3 text-white text-sm sm:text-base hover:bg-white/5 active:bg-white/10 rounded-xl transition-all">
-                            <i class="fa-solid fa-envelope text-red-400 w-5 text-center"></i> Contact
-                        </a>
-                    </div>
+    <!-- Universal Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[100] bg-[#0f172a] transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col">
+        <!-- Header -->
+        <div class="flex justify-between items-center p-6 border-b border-white/10 safe-area-top">
+            <a href="index.html" class="text-xl font-bold tracking-tight flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-bolt text-white text-xs"></i>
                 </div>
+                <span class="gradient-text">NEXUS</span>
+            </a>
+            <button id="close-menu-btn"
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white bg-white/5 rounded-full transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6 safe-area-bottom">
+            <div class="flex flex-col gap-1">
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Home</p>
+                <a href="index.html" class="text-lg font-medium text-white py-2 border-b border-white/10">Home 1</a>
+                <a href="index2.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Home
+                    2</a>
             </div>
-            
-            <!-- Footer -->
-            <div class="p-4 sm:p-5 border-t border-white/10 safe-area-bottom">
-                <a href="contact.html" class="flex items-center justify-center gap-2 w-full px-6 py-4 sm:py-3.5 bg-gradient-to-r from-primary to-secondary text-dark text-sm sm:text-base font-bold rounded-full active:scale-[0.98] transition-transform shadow-lg shadow-primary/20">
-                    <i class="fa-solid fa-rocket"></i> Get Started
+            <div class="flex flex-col gap-1">
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Navigation</p>
+                <a href="about.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">About</a>
+                <a href="services.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Services</a>
+                <a href="case-studies.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Work</a>
+                <a href="pricing.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Pricing</a>
+                <a href="contact.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Contact</a>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Dashboards</p>
+                <a href="admin-dashboard.html" class="text-base text-gray-400 hover:text-white py-2">Admin Panel</a>
+                <a href="user-dashboard.html" class="text-base text-gray-400 hover:text-white py-2">User Dashboard</a>
+            </div>
+
+            <div class="mt-auto pt-6 border-t border-white/10">
+                <a href="contact.html"
+                    class="block w-full py-4 bg-primary text-dark font-bold text-center rounded-xl shadow-lg shadow-primary/20 mb-4">
+                    Get Started
                 </a>
-                <div class="flex items-center justify-center gap-4 mt-4 pt-4 border-t border-white/5">
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
-                        <i class="fa-brands fa-twitter"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
+                <div class="flex justify-center gap-6">
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors"><i
+                            class="fa-brands fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors"><i
+                            class="fa-brands fa-linkedin text-xl"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors"><i
+                            class="fa-brands fa-github text-xl"></i></a>
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
+
+
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12 md:pt-20 md:pb-0">
+    <section
+        class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12 md:pt-20 md:pb-0">
         <!-- Background Elements -->
         <div class="absolute inset-0 z-0">
-            <div class="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary/20 rounded-full blur-[100px] md:blur-[128px] animate-pulse-slow"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-secondary/20 rounded-full blur-[100px] md:blur-[128px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+            <div
+                class="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary/20 rounded-full blur-[100px] md:blur-[128px] animate-pulse-slow">
+            </div>
+            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-secondary/20 rounded-full blur-[100px] md:blur-[128px] animate-pulse-slow"
+                style="animation-delay: 2s;"></div>
             <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
         </div>
 
         <div class="container mx-auto px-4 sm:px-6 relative z-10 text-center">
-        
-            <div class="inline-block mb-3 md:mb-4 px-3 md:px-4 py-1 rounded-full glass border-primary/30 text-primary text-[10px] md:text-xs font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase animate-fade-up">
+
+            <div
+                class="inline-block mb-3 md:mb-4 px-3 md:px-4 py-1 rounded-full glass border-primary/30 text-primary text-[10px] md:text-xs font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase animate-fade-up">
                 Next Gen Agency
             </div>
-            <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 leading-tight animate-fade-up" style="animation-delay: 0.1s;">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 leading-tight animate-fade-up"
+                style="animation-delay: 0.1s;">
                 THE FUTURE OF <br>
-                <span class="hero-glow-text" data-text="DIGITAL GROWTH"><span class="gradient-text neon-text">DIGITAL GROWTH</span></span>
+                <span class="hero-glow-text" data-text="DIGITAL GROWTH"><span class="gradient-text neon-text">DIGITAL
+                        GROWTH</span></span>
             </h1>
-            <p class="text-gray-400 text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-8 md:mb-10 px-4 animate-fade-up" style="animation-delay: 0.2s;">
+            <p class="text-gray-400 text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-8 md:mb-10 px-4 animate-fade-up"
+                style="animation-delay: 0.2s;">
                 We engineer high-conversion digital experiences using AI-driven SEO and futuristic design principles.
             </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 animate-fade-up px-4" style="animation-delay: 0.3s;">
-                <a href="services.html" class="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 bg-white text-dark font-bold rounded-full hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.3)] text-center">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 animate-fade-up px-4"
+                style="animation-delay: 0.3s;">
+                <a href="services.html"
+                    class="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 bg-white text-dark font-bold rounded-full hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.3)] text-center">
                     Explore Services
                 </a>
-                <a href="case-studies.html" class="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all flex items-center justify-center gap-2 group">
-                    View Case Studies <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform rtl:group-hover:-translate-x-1"></i>
+                <a href="case-studies.html"
+                    class="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all flex items-center justify-center gap-2 group">
+                    View Case Studies <i
+                        class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform rtl:group-hover:-translate-x-1"></i>
                 </a>
             </div>
         </div>
@@ -188,68 +208,78 @@
         <div class="absolute bottom-0 left-0 w-full h-20 md:h-32 bg-gradient-to-t from-dark to-transparent z-20"></div>
     </section>
 
-        <!-- Growth Snapshot -->
-        <section class="py-16 md:py-24 bg-black/60 border-y border-white/5">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                    <div class="lg:col-span-1 space-y-4">
-                        <p class="text-primary text-xs font-semibold uppercase tracking-[0.25em]">Live Pulse</p>
-                        <h2 class="text-3xl md:text-4xl font-bold">Traffic & Revenue Momentum</h2>
-                        <p class="text-gray-400">A quick view of how your campaigns are trending right now—no dashboard hop needed.</p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="glass-card rounded-2xl p-4 border border-primary/30">
-                                <p class="text-sm text-gray-400">Organic Sessions</p>
-                                <h3 class="text-2xl font-bold" data-add-plus>127%</h3>
-                                <p class="text-xs text-green-400 flex items-center gap-1"><i class="fa-solid fa-arrow-up"></i> vs last 30 days</p>
-                            </div>
-                            <div class="glass-card rounded-2xl p-4 border border-secondary/30">
-                                <p class="text-sm text-gray-400">Pipeline</p>
-                                <h3 class="text-2xl font-bold">$842K</h3>
-                                <p class="text-xs text-primary flex items-center gap-1"><i class="fa-solid fa-arrow-trend-up"></i> projected</p>
-                            </div>
+    <!-- Growth Snapshot -->
+    <section class="py-16 md:py-24 bg-black/60 border-y border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                <div class="lg:col-span-1 space-y-4">
+                    <p class="text-primary text-xs font-semibold uppercase tracking-[0.25em]">Live Pulse</p>
+                    <h2 class="text-3xl md:text-4xl font-bold">Traffic & Revenue Momentum</h2>
+                    <p class="text-gray-400">A quick view of how your campaigns are trending right now—no dashboard hop
+                        needed.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card rounded-2xl p-4 border border-primary/30">
+                            <p class="text-sm text-gray-400">Organic Sessions</p>
+                            <h3 class="text-2xl font-bold" data-add-plus>127%</h3>
+                            <p class="text-xs text-green-400 flex items-center gap-1"><i
+                                    class="fa-solid fa-arrow-up"></i> vs last 30 days</p>
                         </div>
-                    </div>
-
-                    <div class="lg:col-span-2 glass-card rounded-3xl p-6 md:p-8 border border-white/10 shadow-2xl">
-                        <div class="flex justify-between items-center mb-4">
-                            <div>
-                                <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Realtime Graph</p>
-                                <h3 class="text-lg font-semibold">Visitors & Conversions</h3>
-                            </div>
-                            <span class="px-3 py-1 text-xs rounded-full bg-white/10 text-primary border border-white/10">Live</span>
-                        </div>
-                        <div class="w-full h-64 bg-white/5 rounded-2xl border border-white/5 relative overflow-hidden">
-                            <svg viewBox="0 0 600 260" class="w-full h-full">
-                                <defs>
-                                    <linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
-                                        <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.5" />
-                                        <stop offset="100%" stop-color="#7000FF" stop-opacity="0" />
-                                    </linearGradient>
-                                </defs>
-                                <polyline fill="url(#areaGradient)" stroke="none" points="0,220 50,210 100,180 150,150 200,165 250,130 300,145 350,110 400,120 450,90 500,105 550,80 600,95 600,260 0,260" />
-                                <polyline fill="none" stroke="#00F0FF" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" points="0,210 50,200 100,170 150,140 200,155 250,120 300,135 350,100 400,110 450,80 500,95 550,70 600,85" />
-                                <polyline fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="6 8" stroke-linejoin="round" stroke-linecap="round" points="0,190 50,175 100,185 150,160 200,140 250,150 300,125 350,130 400,105 450,115 500,100 550,95 600,90" />
-                                <g fill="#fff" fill-opacity="0.9" stroke="#111" stroke-width="2">
-                                    <circle cx="450" cy="80" r="4" />
-                                    <circle cx="550" cy="70" r="4" />
-                                    <circle cx="600" cy="85" r="4" />
-                                </g>
-                                <text x="20" y="30" fill="#9ca3af" font-size="12">Visitors</text>
-                                <text x="20" y="50" fill="#22c55e" font-size="12">Conversions</text>
-                            </svg>
-                            <div class="absolute bottom-3 right-4 text-xs text-gray-500">Sample data (demo)</div>
+                        <div class="glass-card rounded-2xl p-4 border border-secondary/30">
+                            <p class="text-sm text-gray-400">Pipeline</p>
+                            <h3 class="text-2xl font-bold">$842K</h3>
+                            <p class="text-xs text-primary flex items-center gap-1"><i
+                                    class="fa-solid fa-arrow-trend-up"></i> projected</p>
                         </div>
                     </div>
                 </div>
+
+                <div class="lg:col-span-2 glass-card rounded-3xl p-6 md:p-8 border border-white/10 shadow-2xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.2em] text-gray-500">Realtime Graph</p>
+                            <h3 class="text-lg font-semibold">Visitors & Conversions</h3>
+                        </div>
+                        <span
+                            class="px-3 py-1 text-xs rounded-full bg-white/10 text-primary border border-white/10">Live</span>
+                    </div>
+                    <div class="w-full h-64 bg-white/5 rounded-2xl border border-white/5 relative overflow-hidden">
+                        <svg viewBox="0 0 600 260" class="w-full h-full">
+                            <defs>
+                                <linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+                                    <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.5" />
+                                    <stop offset="100%" stop-color="#7000FF" stop-opacity="0" />
+                                </linearGradient>
+                            </defs>
+                            <polyline fill="url(#areaGradient)" stroke="none"
+                                points="0,220 50,210 100,180 150,150 200,165 250,130 300,145 350,110 400,120 450,90 500,105 550,80 600,95 600,260 0,260" />
+                            <polyline fill="none" stroke="#00F0FF" stroke-width="3" stroke-linejoin="round"
+                                stroke-linecap="round"
+                                points="0,210 50,200 100,170 150,140 200,155 250,120 300,135 350,100 400,110 450,80 500,95 550,70 600,85" />
+                            <polyline fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="6 8"
+                                stroke-linejoin="round" stroke-linecap="round"
+                                points="0,190 50,175 100,185 150,160 200,140 250,150 300,125 350,130 400,105 450,115 500,100 550,95 600,90" />
+                            <g fill="#fff" fill-opacity="0.9" stroke="#111" stroke-width="2">
+                                <circle cx="450" cy="80" r="4" />
+                                <circle cx="550" cy="70" r="4" />
+                                <circle cx="600" cy="85" r="4" />
+                            </g>
+                            <text x="20" y="30" fill="#9ca3af" font-size="12">Visitors</text>
+                            <text x="20" y="50" fill="#22c55e" font-size="12">Conversions</text>
+                        </svg>
+                        <div class="absolute bottom-3 right-4 text-xs text-gray-500">Sample data (demo)</div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
     <!-- Trusted By Section -->
     <section class="py-12 border-b border-white/5 bg-black">
         <div class="container mx-auto px-6">
             <p class="text-center text-gray-500 text-sm uppercase tracking-widest mb-8">Trusted by industry leaders</p>
             <div class="marquee-container">
-                <div class="marquee-content flex gap-16 items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                <div
+                    class="marquee-content flex gap-16 items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
                     <i class="fa-brands fa-google text-4xl"></i>
                     <i class="fa-brands fa-microsoft text-4xl"></i>
                     <i class="fa-brands fa-amazon text-4xl"></i>
@@ -304,16 +334,21 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
                 <!-- Large Card -->
-                <div class="md:col-span-2 row-span-1 md:row-span-2 glass-card rounded-3xl p-8 relative overflow-hidden group hover:border-primary/50 transition-colors">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] group-hover:bg-primary/20 transition-all"></div>
+                <div
+                    class="md:col-span-2 row-span-1 md:row-span-2 glass-card rounded-3xl p-8 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] group-hover:bg-primary/20 transition-all">
+                    </div>
                     <div class="relative z-10 h-full flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 text-primary">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 text-primary">
                                 <i class="fa-solid fa-rocket text-xl"></i>
                             </div>
                             <h3 class="text-3xl font-bold mb-4">SEO Optimization</h3>
-                            <p class="text-gray-400 max-w-md mb-6">Dominate search rankings with our AI-driven keyword analysis and technical optimization strategies. We don't just rank; we dominate.</p>
-                            
+                            <p class="text-gray-400 max-w-md mb-6">Dominate search rankings with our AI-driven keyword
+                                analysis and technical optimization strategies. We don't just rank; we dominate.</p>
+
                             <!-- SEO Ranking Graph -->
                             <div class="mt-6">
                                 <div class="flex items-center justify-between mb-3">
@@ -323,13 +358,17 @@
                                 <div id="seoRankingChart" style="max-height: 200px;"></div>
                             </div>
                         </div>
-                        <a href="services.html" class="inline-flex items-center gap-2 text-primary font-bold group-hover:translate-x-2 transition-transform">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="services.html"
+                            class="inline-flex items-center gap-2 text-primary font-bold group-hover:translate-x-2 transition-transform">Learn
+                            More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
                 <!-- Small Card 1 -->
-                <div class="glass-card rounded-3xl p-8 relative overflow-hidden group hover:border-secondary/50 transition-colors">
-                    <div class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center mb-6 text-secondary">
+                <div
+                    class="glass-card rounded-3xl p-8 relative overflow-hidden group hover:border-secondary/50 transition-colors">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center mb-6 text-secondary">
                         <i class="fa-solid fa-pen-nib text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Content Strategy</h3>
@@ -337,7 +376,8 @@
                 </div>
 
                 <!-- Small Card 2 -->
-                <div class="glass-card rounded-3xl p-8 relative overflow-hidden group hover:border-white/50 transition-colors">
+                <div
+                    class="glass-card rounded-3xl p-8 relative overflow-hidden group hover:border-white/50 transition-colors">
                     <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-6 text-white">
                         <i class="fa-solid fa-chart-pie text-xl"></i>
                     </div>
@@ -346,12 +386,14 @@
                 </div>
 
                 <!-- Wide Card Bottom -->
-                <div class="md:col-span-3 glass-card rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-primary/50 transition-colors">
+                <div
+                    class="md:col-span-3 glass-card rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-primary/50 transition-colors">
                     <div class="text-left">
                         <h3 class="text-2xl font-bold mb-2">Ready to scale?</h3>
                         <p class="text-gray-400">Join 500+ companies growing with Nexus.</p>
                     </div>
-                    <a href="contact.html" class="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:shadow-[0_0_20px_rgba(112,0,255,0.5)] transition-all">
+                    <a href="contact.html"
+                        class="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:shadow-[0_0_20px_rgba(112,0,255,0.5)] transition-all">
                         Start Your Journey
                     </a>
                 </div>
@@ -367,46 +409,62 @@
                 <div class="relative">
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-4">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" alt="Team Collaboration" class="rounded-2xl border border-white/10 hover:border-primary/50 transition-all hover:scale-105 transform">
-                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=400&fit=crop" alt="Work Environment" class="rounded-2xl border border-white/10 hover:border-secondary/50 transition-all hover:scale-105 transform">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop"
+                                alt="Team Collaboration"
+                                class="rounded-2xl border border-white/10 hover:border-primary/50 transition-all hover:scale-105 transform">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=400&fit=crop"
+                                alt="Work Environment"
+                                class="rounded-2xl border border-white/10 hover:border-secondary/50 transition-all hover:scale-105 transform">
                         </div>
                         <div class="space-y-4 pt-8">
-                            <img src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=400&h=400&fit=crop" alt="Data Analytics" class="rounded-2xl border border-white/10 hover:border-primary/50 transition-all hover:scale-105 transform">
-                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop" alt="Team Meeting" class="rounded-2xl border border-white/10 hover:border-secondary/50 transition-all hover:scale-105 transform">
+                            <img src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=400&h=400&fit=crop"
+                                alt="Data Analytics"
+                                class="rounded-2xl border border-white/10 hover:border-primary/50 transition-all hover:scale-105 transform">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop"
+                                alt="Team Meeting"
+                                class="rounded-2xl border border-white/10 hover:border-secondary/50 transition-all hover:scale-105 transform">
                         </div>
                     </div>
                     <!-- Decorative Element -->
                     <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-[60px]"></div>
                     <div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary/20 rounded-full blur-[60px]"></div>
                 </div>
-                
+
                 <!-- Content -->
                 <div class="lg:pl-8">
-                    <span class="text-secondary text-sm font-bold tracking-widest uppercase mb-4 block">Why Choose Us</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">We Turn <span class="gradient-text">Ideas</span> Into <span class="text-primary">Results</span></h2>
-                    <p class="text-gray-400 mb-8">Our team of experts combines creativity with data-driven strategies to deliver exceptional results that exceed expectations.</p>
-                    
+                    <span class="text-secondary text-sm font-bold tracking-widest uppercase mb-4 block">Why Choose
+                        Us</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">We Turn <span class="gradient-text">Ideas</span>
+                        Into <span class="text-primary">Results</span></h2>
+                    <p class="text-gray-400 mb-8">Our team of experts combines creativity with data-driven strategies to
+                        deliver exceptional results that exceed expectations.</p>
+
                     <div class="space-y-6">
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <i class="fa-solid fa-lightbulb text-primary"></i>
                             </div>
                             <div>
                                 <h4 class="font-bold text-white mb-1">Innovative Strategies</h4>
-                                <p class="text-gray-400 text-sm">Cutting-edge approaches tailored to your unique business needs.</p>
+                                <p class="text-gray-400 text-sm">Cutting-edge approaches tailored to your unique
+                                    business needs.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <i class="fa-solid fa-users text-secondary"></i>
                             </div>
                             <div>
                                 <h4 class="font-bold text-white mb-1">Expert Team</h4>
-                                <p class="text-gray-400 text-sm">Industry veterans with proven track records of success.</p>
+                                <p class="text-gray-400 text-sm">Industry veterans with proven track records of success.
+                                </p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <i class="fa-solid fa-rocket text-green-500"></i>
                             </div>
                             <div>
@@ -425,55 +483,72 @@
         <div class="container mx-auto px-6">
             <div class="mb-16 text-center">
                 <span class="text-primary text-sm font-bold tracking-widest uppercase mb-4 block">Process</span>
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">How We <span class="gradient-text">Deliver Results</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Our proven 4-step methodology ensures maximum ROI for every campaign.</p>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">How We <span class="gradient-text">Deliver
+                        Results</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Our proven 4-step methodology ensures maximum ROI for every
+                    campaign.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Step 1 -->
                 <div class="relative group">
                     <div class="glass-card rounded-2xl p-8 text-center hover:border-primary/50 transition-all h-full">
-                        <div class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/30 transition-colors">
+                        <div
+                            class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/30 transition-colors">
                             <span class="text-primary text-2xl font-bold">01</span>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Discovery & Audit</h3>
-                        <p class="text-gray-400 text-sm">Deep analysis of your current digital presence and competitive landscape.</p>
+                        <p class="text-gray-400 text-sm">Deep analysis of your current digital presence and competitive
+                            landscape.</p>
                     </div>
-                    <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary to-transparent"></div>
+                    <div
+                        class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary to-transparent">
+                    </div>
                 </div>
 
                 <!-- Step 2 -->
                 <div class="relative group">
                     <div class="glass-card rounded-2xl p-8 text-center hover:border-secondary/50 transition-all h-full">
-                        <div class="w-16 h-16 bg-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-secondary/30 transition-colors">
+                        <div
+                            class="w-16 h-16 bg-secondary/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-secondary/30 transition-colors">
                             <span class="text-secondary text-2xl font-bold">02</span>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Strategy Design</h3>
-                        <p class="text-gray-400 text-sm">Custom roadmap tailored to your goals with clear KPIs and milestones.</p>
+                        <p class="text-gray-400 text-sm">Custom roadmap tailored to your goals with clear KPIs and
+                            milestones.</p>
                     </div>
-                    <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-secondary to-transparent"></div>
+                    <div
+                        class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-secondary to-transparent">
+                    </div>
                 </div>
 
                 <!-- Step 3 -->
                 <div class="relative group">
                     <div class="glass-card rounded-2xl p-8 text-center hover:border-green-500/50 transition-all h-full">
-                        <div class="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-green-500/30 transition-colors">
+                        <div
+                            class="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-green-500/30 transition-colors">
                             <span class="text-green-500 text-2xl font-bold">03</span>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Implementation</h3>
-                        <p class="text-gray-400 text-sm">Agile execution with weekly sprints and transparent progress tracking.</p>
+                        <p class="text-gray-400 text-sm">Agile execution with weekly sprints and transparent progress
+                            tracking.</p>
                     </div>
-                    <div class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-green-500 to-transparent"></div>
+                    <div
+                        class="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-green-500 to-transparent">
+                    </div>
                 </div>
 
                 <!-- Step 4 -->
                 <div class="relative group">
-                    <div class="glass-card rounded-2xl p-8 text-center hover:border-yellow-500/50 transition-all h-full">
-                        <div class="w-16 h-16 bg-yellow-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-500/30 transition-colors">
+                    <div
+                        class="glass-card rounded-2xl p-8 text-center hover:border-yellow-500/50 transition-all h-full">
+                        <div
+                            class="w-16 h-16 bg-yellow-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-yellow-500/30 transition-colors">
                             <span class="text-yellow-500 text-2xl font-bold">04</span>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Scale & Optimize</h3>
-                        <p class="text-gray-400 text-sm">Continuous optimization based on data-driven insights and AI analysis.</p>
+                        <p class="text-gray-400 text-sm">Continuous optimization based on data-driven insights and AI
+                            analysis.</p>
                     </div>
                 </div>
             </div>
@@ -486,24 +561,32 @@
             <!-- Services Header with Image -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
                 <div>
-                    <span class="text-secondary text-sm font-bold tracking-widest uppercase mb-4 block">What We Do</span>
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Our <span class="text-secondary">Services</span></h2>
-                    <p class="text-gray-400 max-w-2xl">Comprehensive digital marketing solutions to accelerate your growth. We combine creativity with data-driven strategies to deliver exceptional results.</p>
+                    <span class="text-secondary text-sm font-bold tracking-widest uppercase mb-4 block">What We
+                        Do</span>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Our <span class="text-secondary">Services</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl">Comprehensive digital marketing solutions to accelerate your
+                        growth. We combine creativity with data-driven strategies to deliver exceptional results.</p>
                 </div>
                 <div class="relative hidden lg:block">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-3xl blur-2xl"></div>
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Digital Services" class="relative rounded-2xl border border-white/10 shadow-xl">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-3xl blur-2xl">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
+                        alt="Digital Services" class="relative rounded-2xl border border-white/10 shadow-xl">
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Service 1 -->
                 <div class="glass-card rounded-2xl p-8 group hover:border-primary/50 transition-all">
-                    <div class="w-14 h-14 bg-gradient-to-br from-primary to-primary/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-primary to-primary/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-magnifying-glass-chart text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-white">SEO Optimization</h3>
-                    <p class="text-gray-400 text-sm mb-4">Dominate search rankings with AI-powered keyword research and technical optimization.</p>
+                    <p class="text-gray-400 text-sm mb-4">Dominate search rankings with AI-powered keyword research and
+                        technical optimization.</p>
                     <div class="w-full h-32 bg-white/5 border border-white/10 rounded-xl overflow-hidden mb-4">
                         <svg viewBox="0 0 300 140" class="w-full h-full">
                             <defs>
@@ -512,74 +595,95 @@
                                     <stop offset="100%" stop-color="#7000FF" stop-opacity="0" />
                                 </linearGradient>
                             </defs>
-                            <polyline fill="url(#seoArea)" stroke="none" points="0,120 40,115 80,100 120,80 160,70 200,55 240,48 280,40 300,45 300,140 0,140" />
-                            <polyline fill="none" stroke="#00F0FF" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" points="0,115 40,108 80,95 120,78 160,68 200,52 240,46 280,38 300,44" />
-                            <polyline fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="6 6" stroke-linejoin="round" stroke-linecap="round" points="0,110 40,104 80,92 120,88 160,74 200,66 240,58 280,54 300,50" />
+                            <polyline fill="url(#seoArea)" stroke="none"
+                                points="0,120 40,115 80,100 120,80 160,70 200,55 240,48 280,40 300,45 300,140 0,140" />
+                            <polyline fill="none" stroke="#00F0FF" stroke-width="3" stroke-linejoin="round"
+                                stroke-linecap="round"
+                                points="0,115 40,108 80,95 120,78 160,68 200,52 240,46 280,38 300,44" />
+                            <polyline fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="6 6"
+                                stroke-linejoin="round" stroke-linecap="round"
+                                points="0,110 40,104 80,92 120,88 160,74 200,66 240,58 280,54 300,50" />
                             <text x="12" y="20" fill="#9ca3af" font-size="12">Visibility</text>
                             <text x="12" y="36" fill="#22c55e" font-size="12">Conversions</text>
                         </svg>
                     </div>
-                    <a href="services.html" class="text-primary text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    <a href="services.html"
+                        class="text-primary text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
                         Learn More <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Service 2 -->
                 <div class="glass-card rounded-2xl p-8 group hover:border-secondary/50 transition-all">
-                    <div class="w-14 h-14 bg-gradient-to-br from-secondary to-secondary/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-secondary to-secondary/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-bullhorn text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-white">PPC Advertising</h3>
-                    <p class="text-gray-400 text-sm mb-4">High-converting paid campaigns across Google, Meta, and LinkedIn platforms.</p>
-                    <a href="services.html" class="text-secondary text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    <p class="text-gray-400 text-sm mb-4">High-converting paid campaigns across Google, Meta, and
+                        LinkedIn platforms.</p>
+                    <a href="services.html"
+                        class="text-secondary text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
                         Learn More <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Service 3 -->
                 <div class="glass-card rounded-2xl p-8 group hover:border-green-500/50 transition-all">
-                    <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-500/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-500/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-pen-fancy text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-white">Content Marketing</h3>
-                    <p class="text-gray-400 text-sm mb-4">Engaging content that builds authority and drives organic traffic growth.</p>
-                    <a href="services.html" class="text-green-500 text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    <p class="text-gray-400 text-sm mb-4">Engaging content that builds authority and drives organic
+                        traffic growth.</p>
+                    <a href="services.html"
+                        class="text-green-500 text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
                         Learn More <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Service 4 -->
                 <div class="glass-card rounded-2xl p-8 group hover:border-orange-500/50 transition-all">
-                    <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-500/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-500/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-brands fa-instagram text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-white">Social Media</h3>
-                    <p class="text-gray-400 text-sm mb-4">Build community and brand awareness across all major social platforms.</p>
-                    <a href="services.html" class="text-orange-500 text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    <p class="text-gray-400 text-sm mb-4">Build community and brand awareness across all major social
+                        platforms.</p>
+                    <a href="services.html"
+                        class="text-orange-500 text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
                         Learn More <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Service 5 -->
                 <div class="glass-card rounded-2xl p-8 group hover:border-pink-500/50 transition-all">
-                    <div class="w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-500/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-500/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-envelope-open-text text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-white">Email Marketing</h3>
-                    <p class="text-gray-400 text-sm mb-4">Automated campaigns that nurture leads and drive repeat conversions.</p>
-                    <a href="services.html" class="text-pink-500 text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    <p class="text-gray-400 text-sm mb-4">Automated campaigns that nurture leads and drive repeat
+                        conversions.</p>
+                    <a href="services.html"
+                        class="text-pink-500 text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
                         Learn More <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Service 6 -->
                 <div class="glass-card rounded-2xl p-8 group hover:border-cyan-500/50 transition-all">
-                    <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-500/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-500/50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-chart-line text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-white">Analytics & BI</h3>
-                    <p class="text-gray-400 text-sm mb-4">Real-time dashboards and actionable insights to optimize performance.</p>
-                    <a href="services.html" class="text-cyan-500 text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    <p class="text-gray-400 text-sm mb-4">Real-time dashboards and actionable insights to optimize
+                        performance.</p>
+                    <a href="services.html"
+                        class="text-cyan-500 text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
                         Learn More <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
@@ -592,8 +696,10 @@
         <div class="container mx-auto px-6">
             <div class="mb-16 text-center">
                 <span class="text-primary text-sm font-bold tracking-widest uppercase mb-4 block">Testimonials</span>
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">What Our <span class="gradient-text">Clients Say</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Real results from real businesses who trusted us with their growth.</p>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">What Our <span class="gradient-text">Clients Say</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Real results from real businesses who trusted us with their
+                    growth.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -607,9 +713,11 @@
                         <i class="fa-solid fa-star text-yellow-500"></i>
                         <i class="fa-solid fa-star text-yellow-500"></i>
                     </div>
-                    <p class="text-gray-300 mb-6">"Nexus transformed our online presence. Our organic traffic increased by 340% in just 6 months. The team's expertise in SEO is unmatched."</p>
+                    <p class="text-gray-300 mb-6">"Nexus transformed our online presence. Our organic traffic increased
+                        by 340% in just 6 months. The team's expertise in SEO is unmatched."</p>
                     <div class="flex items-center gap-4">
-                        <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=00F0FF&color=fff" class="w-12 h-12 rounded-full">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=00F0FF&color=fff"
+                            class="w-12 h-12 rounded-full">
                         <div>
                             <h4 class="font-bold text-white">Sarah Johnson</h4>
                             <p class="text-gray-500 text-sm">CEO, TechFlow Inc</p>
@@ -627,9 +735,11 @@
                         <i class="fa-solid fa-star text-yellow-500"></i>
                         <i class="fa-solid fa-star text-yellow-500"></i>
                     </div>
-                    <p class="text-gray-300 mb-6">"The ROI we've seen from their PPC campaigns has been incredible. They reduced our cost per acquisition by 60% while doubling conversions."</p>
+                    <p class="text-gray-300 mb-6">"The ROI we've seen from their PPC campaigns has been incredible. They
+                        reduced our cost per acquisition by 60% while doubling conversions."</p>
                     <div class="flex items-center gap-4">
-                        <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=7000FF&color=fff" class="w-12 h-12 rounded-full">
+                        <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=7000FF&color=fff"
+                            class="w-12 h-12 rounded-full">
                         <div>
                             <h4 class="font-bold text-white">Michael Chen</h4>
                             <p class="text-gray-500 text-sm">Marketing Director, Startup Hub</p>
@@ -647,9 +757,11 @@
                         <i class="fa-solid fa-star text-yellow-500"></i>
                         <i class="fa-solid fa-star text-yellow-500"></i>
                     </div>
-                    <p class="text-gray-300 mb-6">"Their content strategy helped us establish thought leadership in our industry. We're now the go-to resource for our target audience."</p>
+                    <p class="text-gray-300 mb-6">"Their content strategy helped us establish thought leadership in our
+                        industry. We're now the go-to resource for our target audience."</p>
                     <div class="flex items-center gap-4">
-                        <img src="https://ui-avatars.com/api/?name=Emily+Rodriguez&background=22c55e&color=fff" class="w-12 h-12 rounded-full">
+                        <img src="https://ui-avatars.com/api/?name=Emily+Rodriguez&background=22c55e&color=fff"
+                            class="w-12 h-12 rounded-full">
                         <div>
                             <h4 class="font-bold text-white">Emily Rodriguez</h4>
                             <p class="text-gray-500 text-sm">Founder, GreenTech Solutions</p>
@@ -666,14 +778,17 @@
         <div class="container mx-auto px-6 relative">
             <div class="text-center mb-14">
                 <span class="text-primary text-sm font-bold uppercase tracking-[0.3em] mb-4 block">Recognition</span>
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">Awards &amp; <span class="gradient-text">Milestones</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">The moments we are proud of on our journey to reimagine performance marketing.</p>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Awards &amp; <span
+                        class="gradient-text">Milestones</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">The moments we are proud of on our journey to reimagine
+                    performance marketing.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="glass-card rounded-2xl p-8 border border-primary/20">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center text-primary text-xl">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center text-primary text-xl">
                             <i class="fa-solid fa-trophy"></i>
                         </div>
                         <div>
@@ -681,12 +796,14 @@
                             <h3 class="text-xl font-bold text-white">Best AI SEO Suite</h3>
                         </div>
                     </div>
-                    <p class="text-gray-400 text-sm">Recognized for automating technical SEO fixes and insights across 1.2B crawled pages.</p>
+                    <p class="text-gray-400 text-sm">Recognized for automating technical SEO fixes and insights across
+                        1.2B crawled pages.</p>
                 </div>
 
                 <div class="glass-card rounded-2xl p-8 border border-secondary/20">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 rounded-xl bg-secondary/15 flex items-center justify-center text-secondary text-xl">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-secondary/15 flex items-center justify-center text-secondary text-xl">
                             <i class="fa-solid fa-earth-americas"></i>
                         </div>
                         <div>
@@ -694,12 +811,14 @@
                             <h3 class="text-xl font-bold text-white">Global Footprint</h3>
                         </div>
                     </div>
-                    <p class="text-gray-400 text-sm">Campaigns launched in 12 languages with localized playbooks and AI-driven translation QA.</p>
+                    <p class="text-gray-400 text-sm">Campaigns launched in 12 languages with localized playbooks and
+                        AI-driven translation QA.</p>
                 </div>
 
                 <div class="glass-card rounded-2xl p-8 border border-white/10">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white text-xl">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white text-xl">
                             <i class="fa-solid fa-medal"></i>
                         </div>
                         <div>
@@ -707,7 +826,8 @@
                             <h3 class="text-xl font-bold text-white">Customer Love</h3>
                         </div>
                     </div>
-                    <p class="text-gray-400 text-sm">Enterprise NPS backed by weekly office hours, dashboards, and war-room performance audits.</p>
+                    <p class="text-gray-400 text-sm">Enterprise NPS backed by weekly office hours, dashboards, and
+                        war-room performance audits.</p>
                 </div>
             </div>
         </div>
@@ -720,32 +840,38 @@
             <div class="flex flex-col lg:flex-row items-start lg:items-center gap-12">
                 <div class="lg:w-1/2 space-y-6">
                     <p class="text-secondary text-sm font-bold uppercase tracking-[0.3em]">Ecosystem</p>
-                    <h2 class="text-3xl md:text-5xl font-bold text-white">Built to <span class="gradient-text">Connect</span></h2>
-                    <p class="text-gray-400 text-lg">We plug directly into your stack so reporting, automation, and experimentation stay in sync.</p>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white">Built to <span
+                            class="gradient-text">Connect</span></h2>
+                    <p class="text-gray-400 text-lg">We plug directly into your stack so reporting, automation, and
+                        experimentation stay in sync.</p>
                     <div class="grid grid-cols-2 gap-4 text-sm text-gray-300">
                         <div class="flex items-center gap-3">
-                            <span class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center"><i class="fa-brands fa-google"></i></span>
+                            <span class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center"><i
+                                    class="fa-brands fa-google"></i></span>
                             <div>
                                 <p class="font-semibold text-white">GA4 + Looker</p>
                                 <p class="text-gray-500 text-xs">Unified tracking and live benchmarks.</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
-                            <span class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center"><i class="fa-brands fa-salesforce"></i></span>
+                            <span class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center"><i
+                                    class="fa-brands fa-salesforce"></i></span>
                             <div>
                                 <p class="font-semibold text-white">CRM Sync</p>
                                 <p class="text-gray-500 text-xs">Lead scoring pushed to revenue teams.</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
-                            <span class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center"><i class="fa-brands fa-slack"></i></span>
+                            <span class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center"><i
+                                    class="fa-brands fa-slack"></i></span>
                             <div>
                                 <p class="font-semibold text-white">Slack Alerts</p>
                                 <p class="text-gray-500 text-xs">Wins and anomalies in real time.</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
-                            <span class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center"><i class="fa-solid fa-flask"></i></span>
+                            <span class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center"><i
+                                    class="fa-solid fa-flask"></i></span>
                             <div>
                                 <p class="font-semibold text-white">Experiment Hub</p>
                                 <p class="text-gray-500 text-xs">Ship A/B tests with guardrails.</p>
@@ -757,10 +883,13 @@
                 <div class="lg:w-1/2 grid grid-cols-2 gap-4">
                     <div class="glass-card rounded-2xl p-6 border border-white/10">
                         <div class="flex items-center gap-3 mb-3">
-                            <span class="w-10 h-10 rounded-lg bg-primary/15 text-primary flex items-center justify-center"><i class="fa-solid fa-gears"></i></span>
+                            <span
+                                class="w-10 h-10 rounded-lg bg-primary/15 text-primary flex items-center justify-center"><i
+                                    class="fa-solid fa-gears"></i></span>
                             <p class="text-white font-semibold">Automation Recipes</p>
                         </div>
-                        <p class="text-gray-400 text-sm mb-3">Prebuilt plays for redirects, schema, crawl budget, and feeds.</p>
+                        <p class="text-gray-400 text-sm mb-3">Prebuilt plays for redirects, schema, crawl budget, and
+                            feeds.</p>
                         <div class="flex items-center gap-2 text-xs text-gray-500">
                             <span class="px-3 py-1 rounded-full bg-white/5">40+ templates</span>
                             <span class="px-3 py-1 rounded-full bg-white/5">Zero dev lift</span>
@@ -768,10 +897,13 @@
                     </div>
                     <div class="glass-card rounded-2xl p-6 border border-white/10">
                         <div class="flex items-center gap-3 mb-3">
-                            <span class="w-10 h-10 rounded-lg bg-secondary/15 text-secondary flex items-center justify-center"><i class="fa-solid fa-shield-halved"></i></span>
+                            <span
+                                class="w-10 h-10 rounded-lg bg-secondary/15 text-secondary flex items-center justify-center"><i
+                                    class="fa-solid fa-shield-halved"></i></span>
                             <p class="text-white font-semibold">Governance</p>
                         </div>
-                        <p class="text-gray-400 text-sm mb-3">Role-based access, change logs, and approvals for every rollout.</p>
+                        <p class="text-gray-400 text-sm mb-3">Role-based access, change logs, and approvals for every
+                            rollout.</p>
                         <div class="flex items-center gap-2 text-xs text-gray-500">
                             <span class="px-3 py-1 rounded-full bg-white/5">SOC2 ready</span>
                             <span class="px-3 py-1 rounded-full bg-white/5">Audit trails</span>
@@ -779,10 +911,13 @@
                     </div>
                     <div class="glass-card rounded-2xl p-6 border border-white/10">
                         <div class="flex items-center gap-3 mb-3">
-                            <span class="w-10 h-10 rounded-lg bg-white/10 text-white flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></span>
+                            <span
+                                class="w-10 h-10 rounded-lg bg-white/10 text-white flex items-center justify-center"><i
+                                    class="fa-solid fa-chart-line"></i></span>
                             <p class="text-white font-semibold">Attribution</p>
                         </div>
-                        <p class="text-gray-400 text-sm mb-3">Blend paid, organic, and partner data into one view with lift modeling.</p>
+                        <p class="text-gray-400 text-sm mb-3">Blend paid, organic, and partner data into one view with
+                            lift modeling.</p>
                         <div class="flex items-center gap-2 text-xs text-gray-500">
                             <span class="px-3 py-1 rounded-full bg-white/5">Multi-touch</span>
                             <span class="px-3 py-1 rounded-full bg-white/5">Revenue linked</span>
@@ -790,10 +925,13 @@
                     </div>
                     <div class="glass-card rounded-2xl p-6 border border-white/10">
                         <div class="flex items-center gap-3 mb-3">
-                            <span class="w-10 h-10 rounded-lg bg-white/10 text-white flex items-center justify-center"><i class="fa-solid fa-plug"></i></span>
+                            <span
+                                class="w-10 h-10 rounded-lg bg-white/10 text-white flex items-center justify-center"><i
+                                    class="fa-solid fa-plug"></i></span>
                             <p class="text-white font-semibold">Composable APIs</p>
                         </div>
-                        <p class="text-gray-400 text-sm mb-3">Stream insights into your warehouse or BI layer with webhooks.</p>
+                        <p class="text-gray-400 text-sm mb-3">Stream insights into your warehouse or BI layer with
+                            webhooks.</p>
                         <div class="flex items-center gap-2 text-xs text-gray-500">
                             <span class="px-3 py-1 rounded-full bg-white/5">REST + webhooks</span>
                             <span class="px-3 py-1 rounded-full bg-white/5">Warehouse ready</span>
@@ -811,16 +949,20 @@
                 <div>
                     <span class="text-primary text-sm font-bold uppercase tracking-[0.3em]">Library</span>
                     <h2 class="text-3xl md:text-5xl font-bold text-white">Latest Field Notes</h2>
-                    <p class="text-gray-400 max-w-2xl">Fresh playbooks from our strategists on shipping faster and ranking higher.</p>
+                    <p class="text-gray-400 max-w-2xl">Fresh playbooks from our strategists on shipping faster and
+                        ranking higher.</p>
                 </div>
-                <a href="case-studies.html" class="inline-flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full text-white font-semibold hover:bg-white hover:text-black transition-all">View All Work <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="case-studies.html"
+                    class="inline-flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full text-white font-semibold hover:bg-white hover:text-black transition-all">View
+                    All Work <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <article class="glass-card p-6 rounded-2xl border border-white/10">
                     <p class="text-xs uppercase tracking-[0.2em] text-primary mb-3">Technical SEO</p>
                     <h3 class="text-xl font-bold text-white mb-3">14-point audit to ship a zero-regret migration</h3>
-                    <p class="text-gray-400 text-sm mb-4">A blueprint our teams use to preserve rankings while modernizing architecture.</p>
+                    <p class="text-gray-400 text-sm mb-4">A blueprint our teams use to preserve rankings while
+                        modernizing architecture.</p>
                     <div class="flex items-center gap-3 text-gray-500 text-xs">
                         <span>8 min read</span>
                         <span class="w-1 h-1 rounded-full bg-gray-600"></span>
@@ -830,7 +972,8 @@
                 <article class="glass-card p-6 rounded-2xl border border-white/10">
                     <p class="text-xs uppercase tracking-[0.2em] text-secondary mb-3">Paid + Organic</p>
                     <h3 class="text-xl font-bold text-white mb-3">How to align search, social, and PR for launches</h3>
-                    <p class="text-gray-400 text-sm mb-4">Sequenced content drops, pixel rules, and retargeting sets for launch month.</p>
+                    <p class="text-gray-400 text-sm mb-4">Sequenced content drops, pixel rules, and retargeting sets for
+                        launch month.</p>
                     <div class="flex items-center gap-3 text-gray-500 text-xs">
                         <span>6 min read</span>
                         <span class="w-1 h-1 rounded-full bg-gray-600"></span>
@@ -840,7 +983,8 @@
                 <article class="glass-card p-6 rounded-2xl border border-white/10">
                     <p class="text-xs uppercase tracking-[0.2em] text-white mb-3">Analytics</p>
                     <h3 class="text-xl font-bold text-white mb-3">Attribution without losing privacy</h3>
-                    <p class="text-gray-400 text-sm mb-4">How we rebuilt funnel tracking with modeled conversions and server-side pixels.</p>
+                    <p class="text-gray-400 text-sm mb-4">How we rebuilt funnel tracking with modeled conversions and
+                        server-side pixels.</p>
                     <div class="flex items-center gap-3 text-gray-500 text-xs">
                         <span>9 min read</span>
                         <span class="w-1 h-1 rounded-full bg-gray-600"></span>
@@ -858,23 +1002,29 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Content -->
                 <div>
-                    <span class="text-primary text-sm font-bold tracking-widest uppercase mb-4 block">Let's Work Together</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to <span class="gradient-text">Transform</span> Your Digital Presence?</h2>
-                    <p class="text-gray-400 mb-8">Join hundreds of successful businesses who have accelerated their growth with our proven strategies and expert team.</p>
+                    <span class="text-primary text-sm font-bold tracking-widest uppercase mb-4 block">Let's Work
+                        Together</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to <span
+                            class="gradient-text">Transform</span> Your Digital Presence?</h2>
+                    <p class="text-gray-400 mb-8">Join hundreds of successful businesses who have accelerated their
+                        growth with our proven strategies and expert team.</p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-dark font-bold rounded-full hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] transition-all">
+                        <a href="contact.html"
+                            class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-dark font-bold rounded-full hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] transition-all">
                             Start Your Project
                         </a>
-                        <a href="case-studies.html" class="px-8 py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all flex items-center gap-2">
+                        <a href="case-studies.html"
+                            class="px-8 py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all flex items-center gap-2">
                             <i class="fa-solid fa-play"></i> Watch Success Stories
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Image Collage -->
                 <div class="relative">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=500&fit=crop" alt="Team Success" class="rounded-2xl border border-white/10 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=500&fit=crop"
+                            alt="Team Success" class="rounded-2xl border border-white/10 shadow-2xl">
                         <!-- Overlay Badge -->
                         <div class="absolute -bottom-6 -right-6 glass-card rounded-xl p-6 border border-primary/30">
                             <div class="text-center">
@@ -897,9 +1047,12 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                 <div>
                     <span class="text-secondary text-sm font-bold tracking-widest uppercase mb-4 block">FAQ</span>
-                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Frequently Asked <span class="text-secondary">Questions</span></h2>
-                    <p class="text-gray-400 mb-8">Can't find what you're looking for? Our team is here to help with any questions.</p>
-                    <a href="contact.html" class="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-white font-bold rounded-full hover:bg-secondary/80 transition-all">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Frequently Asked <span
+                            class="text-secondary">Questions</span></h2>
+                    <p class="text-gray-400 mb-8">Can't find what you're looking for? Our team is here to help with any
+                        questions.</p>
+                    <a href="contact.html"
+                        class="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-white font-bold rounded-full hover:bg-secondary/80 transition-all">
                         <i class="fa-solid fa-message"></i> Contact Support
                     </a>
                 </div>
@@ -907,45 +1060,57 @@
                 <div class="space-y-4">
                     <!-- FAQ Item 1 -->
                     <div class="glass-card rounded-xl overflow-hidden">
-                        <button class="w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <button class="w-full p-6 text-left flex items-center justify-between"
+                            onclick="toggleFaq(this)">
                             <span class="font-bold text-white">How long until I see results?</span>
                             <i class="fa-solid fa-plus text-primary transition-transform"></i>
                         </button>
                         <div class="px-6 pb-6 hidden">
-                            <p class="text-gray-400">Most clients see measurable improvements within 30-60 days. SEO typically shows significant results in 3-6 months, while PPC campaigns can generate leads within the first week.</p>
+                            <p class="text-gray-400">Most clients see measurable improvements within 30-60 days. SEO
+                                typically shows significant results in 3-6 months, while PPC campaigns can generate
+                                leads within the first week.</p>
                         </div>
                     </div>
 
                     <!-- FAQ Item 2 -->
                     <div class="glass-card rounded-xl overflow-hidden">
-                        <button class="w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <button class="w-full p-6 text-left flex items-center justify-between"
+                            onclick="toggleFaq(this)">
                             <span class="font-bold text-white">What's included in your packages?</span>
                             <i class="fa-solid fa-plus text-primary transition-transform"></i>
                         </button>
                         <div class="px-6 pb-6 hidden">
-                            <p class="text-gray-400">Each package includes strategy development, implementation, monthly reporting, and dedicated account management. Specific deliverables vary by service tier.</p>
+                            <p class="text-gray-400">Each package includes strategy development, implementation, monthly
+                                reporting, and dedicated account management. Specific deliverables vary by service tier.
+                            </p>
                         </div>
                     </div>
 
                     <!-- FAQ Item 3 -->
                     <div class="glass-card rounded-xl overflow-hidden">
-                        <button class="w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <button class="w-full p-6 text-left flex items-center justify-between"
+                            onclick="toggleFaq(this)">
                             <span class="font-bold text-white">Do you work with small businesses?</span>
                             <i class="fa-solid fa-plus text-primary transition-transform"></i>
                         </button>
                         <div class="px-6 pb-6 hidden">
-                            <p class="text-gray-400">Absolutely! We have scalable solutions for businesses of all sizes. Our Starter package is designed specifically for small businesses and startups looking to grow.</p>
+                            <p class="text-gray-400">Absolutely! We have scalable solutions for businesses of all sizes.
+                                Our Starter package is designed specifically for small businesses and startups looking
+                                to grow.</p>
                         </div>
                     </div>
 
                     <!-- FAQ Item 4 -->
                     <div class="glass-card rounded-xl overflow-hidden">
-                        <button class="w-full p-6 text-left flex items-center justify-between" onclick="toggleFaq(this)">
+                        <button class="w-full p-6 text-left flex items-center justify-between"
+                            onclick="toggleFaq(this)">
                             <span class="font-bold text-white">What makes Nexus different?</span>
                             <i class="fa-solid fa-plus text-primary transition-transform"></i>
                         </button>
                         <div class="px-6 pb-6 hidden">
-                            <p class="text-gray-400">We combine AI-powered tools with human expertise, offering transparent reporting, no long-term contracts, and a proven track record of 10x ROI for our clients.</p>
+                            <p class="text-gray-400">We combine AI-powered tools with human expertise, offering
+                                transparent reporting, no long-term contracts, and a proven track record of 10x ROI for
+                                our clients.</p>
                         </div>
                     </div>
                 </div>
@@ -960,10 +1125,13 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10"></div>
                 <div class="relative z-10 text-center max-w-2xl mx-auto">
                     <h2 class="text-2xl md:text-4xl font-bold mb-4">Stay Ahead of the Curve</h2>
-                    <p class="text-gray-400 mb-8">Subscribe to our newsletter for the latest digital marketing insights, tips, and industry trends.</p>
+                    <p class="text-gray-400 mb-8">Subscribe to our newsletter for the latest digital marketing insights,
+                        tips, and industry trends.</p>
                     <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                        <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-colors">
-                        <button type="submit" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-dark font-bold rounded-full hover:opacity-90 transition-all whitespace-nowrap">
+                        <input type="email" placeholder="Enter your email"
+                            class="flex-1 px-6 py-4 bg-white/5 border border-white/10 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-colors">
+                        <button type="submit"
+                            class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-dark font-bold rounded-full hover:opacity-90 transition-all whitespace-nowrap">
                             Subscribe
                         </button>
                     </form>
@@ -981,26 +1149,33 @@
                 <!-- Brand Column -->
                 <div class="lg:col-span-2">
                     <a href="#" class="text-2xl font-bold tracking-tighter flex items-center gap-2 mb-6">
-                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
                             <i class="fa-solid fa-bolt text-white"></i>
                         </div>
                         <span class="gradient-text">NEXUS</span>
                     </a>
-                    <p class="text-gray-400 mb-6 max-w-sm">We engineer high-conversion digital experiences using AI-driven SEO and futuristic design principles.</p>
+                    <p class="text-gray-400 mb-6 max-w-sm">We engineer high-conversion digital experiences using
+                        AI-driven SEO and futuristic design principles.</p>
                     <div class="flex gap-3">
-                        <a href="#" class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
+                        <a href="#"
+                            class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
                             <i class="fa-brands fa-twitter"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
+                        <a href="#"
+                            class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
+                        <a href="#"
+                            class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
+                        <a href="#"
+                            class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
                             <i class="fa-brands fa-youtube"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
+                        <a href="#"
+                            class="w-10 h-10 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all">
                             <i class="fa-brands fa-github"></i>
                         </a>
                     </div>
@@ -1010,12 +1185,18 @@
                 <div>
                     <h4 class="text-white font-bold mb-6">Quick Links</h4>
                     <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors text-sm">Home</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-primary transition-colors text-sm">About Us</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors text-sm">Services</a></li>
-                        <li><a href="case-studies.html" class="text-gray-400 hover:text-primary transition-colors text-sm">Case Studies</a></li>
-                        <li><a href="pricing.html" class="text-gray-400 hover:text-primary transition-colors text-sm">Pricing</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-primary transition-colors text-sm">Contact</a></li>
+                        <li><a href="index.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">Home</a></li>
+                        <li><a href="about.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">About Us</a></li>
+                        <li><a href="services.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">Services</a></li>
+                        <li><a href="case-studies.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">Case Studies</a></li>
+                        <li><a href="pricing.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">Pricing</a></li>
+                        <li><a href="contact.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">Contact</a></li>
                     </ul>
                 </div>
 
@@ -1023,12 +1204,23 @@
                 <div>
                     <h4 class="text-white font-bold mb-6">Services</h4>
                     <ul class="space-y-3">
-                        <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors text-sm">SEO Optimization</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors text-sm">PPC Advertising</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors text-sm">Content Marketing</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors text-sm">Social Media</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors text-sm">Email Marketing</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors text-sm">Analytics & BI</a></li>
+                        <li><a href="services.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">SEO Optimization</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">PPC Advertising</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">Content Marketing</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">Social Media</a></li>
+                        <li><a href="services.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">Email Marketing</a>
+                        </li>
+                        <li><a href="services.html"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">Analytics & BI</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -1042,11 +1234,13 @@
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-envelope text-primary"></i>
-                            <a href="mailto:hello@nexus.com" class="text-gray-400 hover:text-primary transition-colors text-sm">hello@nexus.com</a>
+                            <a href="mailto:hello@nexus.com"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">hello@nexus.com</a>
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-phone text-primary"></i>
-                            <a href="tel:+15551234567" class="text-gray-400 hover:text-primary transition-colors text-sm">+1 (555) 123-4567</a>
+                            <a href="tel:+15551234567"
+                                class="text-gray-400 hover:text-primary transition-colors text-sm">+1 (555) 123-4567</a>
                         </li>
                     </ul>
                 </div>
@@ -1066,15 +1260,24 @@
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button id="scroll-top" class="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-primary to-secondary text-dark rounded-full shadow-lg hover:shadow-xl transition-all opacity-0 invisible z-50 flex items-center justify-center hover:-translate-y-1">
+    <button id="scroll-top"
+        class="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-primary to-secondary text-dark rounded-full shadow-lg hover:shadow-xl transition-all opacity-0 invisible z-50 flex items-center justify-center hover:-translate-y-1">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
     <style>
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
+
         .animate-float {
             animation: float 3s ease-in-out infinite;
         }
@@ -1100,7 +1303,7 @@
                 scrollTopBtn?.classList.remove('opacity-100', 'visible');
             }
         });
-        
+
         scrollTopBtn?.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
@@ -1188,4 +1391,5 @@
         }
     </script>
 </body>
+
 </html>

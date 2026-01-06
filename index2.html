@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
@@ -18,16 +20,27 @@
         * {
             font-family: 'Outfit', sans-serif;
         }
-        
+
         .theme-v2 {
             background: radial-gradient(ellipse at top, #1a0a2e 0%, #0f0515 50%, #050208 100%);
         }
-        
+
         /* Neon Glow Effects */
-        .neon-pink { color: #ff00ff; text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
-        .neon-cyan { color: #00ffff; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff; }
-        .neon-purple { color: #bf00ff; text-shadow: 0 0 10px #bf00ff, 0 0 20px #bf00ff, 0 0 40px #bf00ff; }
-        
+        .neon-pink {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+        }
+
+        .neon-cyan {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+        }
+
+        .neon-purple {
+            color: #bf00ff;
+            text-shadow: 0 0 10px #bf00ff, 0 0 20px #bf00ff, 0 0 40px #bf00ff;
+        }
+
         /* Gradient Text V2 */
         .gradient-neon {
             background: linear-gradient(90deg, #ff00ff 0%, #00ffff 50%, #ff00ff 100%);
@@ -37,12 +50,19 @@
             background-clip: text;
             animation: gradient-flow 3s ease infinite;
         }
-        
+
         @keyframes gradient-flow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
-        
+
         /* Glassmorphism V2 */
         .glass-dark {
             background: rgba(15, 5, 25, 0.7);
@@ -50,7 +70,7 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 0, 255, 0.1);
         }
-        
+
         .glass-card {
             background: linear-gradient(135deg, rgba(30, 10, 50, 0.8) 0%, rgba(15, 5, 25, 0.9) 100%);
             backdrop-filter: blur(20px);
@@ -60,7 +80,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .glass-card::before {
             content: '';
             position: absolute;
@@ -70,13 +90,13 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255, 0, 255, 0.5), transparent);
         }
-        
+
         .glass-card:hover {
             transform: translateY(-10px);
             border-color: rgba(0, 255, 255, 0.4);
             box-shadow: 0 20px 60px rgba(191, 0, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.1);
         }
-        
+
         /* Hexagon Grid Background */
         .hex-grid {
             position: absolute;
@@ -85,7 +105,7 @@
             background-size: 60px 60px;
             opacity: 0.5;
         }
-        
+
         /* Floating Orbs */
         .orb {
             position: absolute;
@@ -94,16 +114,31 @@
             animation: float 8s ease-in-out infinite;
             pointer-events: none;
         }
-        
-        .orb-pink { background: rgba(255, 0, 255, 0.3); }
-        .orb-cyan { background: rgba(0, 255, 255, 0.3); }
-        .orb-purple { background: rgba(191, 0, 255, 0.3); }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-30px) scale(1.1); }
+
+        .orb-pink {
+            background: rgba(255, 0, 255, 0.3);
         }
-        
+
+        .orb-cyan {
+            background: rgba(0, 255, 255, 0.3);
+        }
+
+        .orb-purple {
+            background: rgba(191, 0, 255, 0.3);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-30px) scale(1.1);
+            }
+        }
+
         /* Buttons */
         .btn-neon {
             position: relative;
@@ -116,7 +151,7 @@
             overflow: hidden;
             transition: all 0.4s ease;
         }
-        
+
         .btn-neon::before {
             content: '';
             position: absolute;
@@ -126,16 +161,16 @@
             transition: opacity 0.4s ease;
             z-index: -1;
         }
-        
+
         .btn-neon:hover {
             color: white;
             box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
         }
-        
+
         .btn-neon:hover::before {
             opacity: 1;
         }
-        
+
         .btn-solid {
             padding: 16px 32px;
             background: linear-gradient(135deg, #ff00ff 0%, #bf00ff 50%, #00ffff 100%);
@@ -146,19 +181,19 @@
             transition: all 0.4s ease;
             box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
         }
-        
+
         .btn-solid:hover {
             background-position: 100% 0;
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(255, 0, 255, 0.5);
         }
-        
+
         /* Timeline Style */
         .timeline-item {
             position: relative;
             padding-left: 40px;
         }
-        
+
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -168,11 +203,11 @@
             width: 2px;
             background: linear-gradient(180deg, #ff00ff 0%, #bf00ff 50%, rgba(191, 0, 255, 0.1) 100%);
         }
-        
+
         .timeline-item:last-child::before {
             bottom: 0;
         }
-        
+
         .timeline-dot {
             position: absolute;
             left: -6px;
@@ -183,26 +218,28 @@
             border-radius: 50%;
             box-shadow: 0 0 20px #ff00ff;
         }
-        
+
         /* Navigation */
         .nav-v2 {
-            background: rgba(10, 5, 20, 0.8);
+            background: rgba(26, 10, 46, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(191, 0, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(191, 0, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
-        
+
         /* Scroll reveal */
         .reveal-v2 {
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .reveal-v2.active {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         /* Number highlight */
         .number-highlight {
             font-size: 5rem;
@@ -213,35 +250,44 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         /* Marquee */
         .marquee-v2 {
             display: flex;
             overflow: hidden;
             white-space: nowrap;
         }
-        
+
         .marquee-v2-content {
             display: flex;
             animation: marquee 30s linear infinite;
         }
-        
+
         @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
-        
+
         /* Mobile Menu */
         .mobile-menu-v2 {
             background: linear-gradient(135deg, #1a0a2e 0%, #0f0515 100%);
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .mobile-menu-v2.active {
-            transform: translateX(0);
+            transform: translateX(0) !important;
         }
-        
+
+        #mobile-menu {
+            z-index: 100;
+        }
+
         /* Bento Grid */
         .bento-grid {
             display: grid;
@@ -249,23 +295,81 @@
             grid-template-columns: repeat(12, 1fr);
             grid-auto-rows: minmax(200px, auto);
         }
-        
-        .bento-item-1 { grid-column: span 12; }
-        .bento-item-2 { grid-column: span 6; }
-        .bento-item-3 { grid-column: span 6; }
-        .bento-item-4 { grid-column: span 4; }
-        .bento-item-5 { grid-column: span 4; }
-        .bento-item-6 { grid-column: span 4; }
-        
+
+        .bento-item-1 {
+            grid-column: span 12;
+        }
+
+        .bento-item-2 {
+            grid-column: span 6;
+        }
+
+        .bento-item-3 {
+            grid-column: span 6;
+        }
+
+        .bento-item-4 {
+            grid-column: span 4;
+        }
+
+        .bento-item-5 {
+            grid-column: span 4;
+        }
+
+        .bento-item-6 {
+            grid-column: span 4;
+        }
+
         @media (max-width: 768px) {
-            .bento-item-1, .bento-item-2, .bento-item-3, .bento-item-4, .bento-item-5, .bento-item-6 {
+
+            .bento-item-1,
+            .bento-item-2,
+            .bento-item-3,
+            .bento-item-4,
+            .bento-item-5,
+            .bento-item-6 {
                 grid-column: span 12;
             }
         }
+
+        /* RTL Support */
+        [dir="rtl"] .mobile-menu-v2 {
+            transform: translateX(-100%);
+        }
+
+        [dir="rtl"] .mobile-menu-v2.active {
+            transform: translateX(0);
+        }
+
+        [dir="rtl"] .timeline-item {
+            padding-left: 0;
+            padding-right: 40px;
+        }
+
+        [dir="rtl"] .timeline-item::before {
+            left: auto;
+            right: 0;
+        }
+
+        [dir="rtl"] .timeline-dot {
+            left: auto;
+            right: -6px;
+        }
+
+        [dir="rtl"] .text-left {
+            text-align: right;
+        }
+
+        [dir="rtl"] .mr-2,
+        [dir="rtl"] .mr-3 {
+            margin-right: 0;
+            margin-left: 0.5rem;
+        }
     </style>
 </head>
-<body class="theme-v2 text-white antialiased overflow-x-hidden">
-    
+
+<body class="bg-[#0f0515] text-white font-sans antialiased theme-v2 selection:bg-pink-500/30">
+
     <!-- Background Effects -->
     <div class="fixed inset-0 pointer-events-none z-0">
         <div class="hex-grid"></div>
@@ -274,82 +378,146 @@
         <div class="orb orb-purple w-64 h-64 bottom-20 left-1/3" style="animation-delay: 4s;"></div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 nav-v2 py-4">
+    <!-- Universal Navbar -->
+    <nav class="nav-wrapper py-4" id="navbar">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="index2.html" class="text-2xl font-bold tracking-tight flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30">
+            <!-- Logo -->
+            <a href="index2.html" class="text-2xl font-bold tracking-tight flex items-center gap-2">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30">
                     <i class="fa-solid fa-bolt text-white"></i>
                 </div>
                 <span class="gradient-neon">NEXUS</span>
             </a>
-            
+
             <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center gap-10">
+            <div class="hidden lg:flex items-center gap-8">
+                <!-- Dropdown: Home -->
                 <div class="relative group">
-                    <button class="text-white hover:text-white transition-colors text-sm tracking-wide flex items-center gap-2 py-2">
-                        Home <i class="fa-solid fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+                    <button
+                        class="flex items-center gap-1 text-sm font-medium text-gray-300 hover:text-white transition-colors py-2">
+                        Home <i
+                            class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform"></i>
                     </button>
-                    <div class="absolute top-full left-0 mt-4 w-48 glass-card p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                        <a href="index.html" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-white hover:text-cyan-300 text-sm transition-colors">Home Dark Blue</a>
-                        <a href="index2.html" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-white hover:text-cyan-300 text-sm transition-colors">Home Neon</a>
+                    <div
+                        class="absolute top-full left-0 mt-2 w-48 bg-[#0f172a] border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
+                        <a href="index.html"
+                            class="block px-4 py-3 rounded-lg hover:bg-white/5 text-white hover:text-cyan-300 text-sm transition-colors">Home
+                            1</a>
+                        <a href="index2.html"
+                            class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Home
+                            2</a>
                     </div>
                 </div>
-                <a href="about.html" class="text-white hover:text-cyan-300 transition-colors text-sm tracking-wide">About</a>
-                <a href="services.html" class="text-white hover:text-cyan-300 transition-colors text-sm tracking-wide">Services</a>
+
+                <a href="about.html"
+                    class="text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
+                <a href="services.html"
+                    class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Services</a>
+
+                <!-- Dropdown: Dashboard -->
                 <div class="relative group">
-                    <button class="text-white hover:text-white transition-colors text-sm tracking-wide flex items-center gap-2 py-2">
-                        Dashboard <i class="fa-solid fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+                    <button
+                        class="flex items-center gap-1 text-sm font-medium text-gray-300 hover:text-white transition-colors py-2">
+                        Dashboard <i
+                            class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform"></i>
                     </button>
-                    <div class="absolute top-full left-0 mt-4 w-48 glass-card p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                        <a href="admin-dashboard.html" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-white hover:text-cyan-300 text-sm transition-colors">Admin Panel</a>
-                        <a href="user-dashboard.html" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-white hover:text-cyan-300 text-sm transition-colors">User Portal</a>
+                    <div
+                        class="absolute top-full left-0 mt-2 w-48 bg-[#0f172a] border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
+                        <a href="admin-dashboard.html"
+                            class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">Admin
+                            Panel</a>
+                        <a href="user-dashboard.html"
+                            class="block px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-colors">User
+                            Dashboard</a>
                     </div>
                 </div>
-                <a href="case-studies.html" class="text-white hover:text-cyan-300 transition-colors text-sm tracking-wide">Work</a>
-                <a href="pricing.html" class="text-white hover:text-cyan-300 transition-colors text-sm tracking-wide">Pricing</a>
+
+                <a href="case-studies.html"
+                    class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Work</a>
+                <a href="pricing.html"
+                    class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Pricing</a>
             </div>
 
+            <!-- Actions -->
             <div class="flex items-center gap-4">
+                <button id="rtl-toggle"
+                    class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
                 <a href="contact.html" class="hidden lg:block btn-neon text-sm px-6 py-3">
                     Let's Talk
                 </a>
-                <button id="mobile-menu-btn" class="lg:hidden w-10 h-10 flex items-center justify-center text-white text-xl">
+                <button id="mobile-menu-btn"
+                    class="lg:hidden w-10 h-10 flex items-center justify-center text-white text-xl">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
+    </nav>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu-v2 fixed inset-0 z-[100] flex flex-col lg:hidden">
-            <div class="flex justify-between items-center p-5 border-b border-white/10">
-                <a href="index2.html" class="text-xl font-bold flex items-center gap-2">
-                    <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-500 rounded-lg flex items-center justify-center">
-                        <i class="fa-solid fa-bolt text-white text-sm"></i>
-                    </div>
-                    <span class="gradient-neon">NEXUS</span>
-                </a>
-                <button id="close-menu-btn" class="w-10 h-10 flex items-center justify-center text-white text-xl">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+    <!-- Universal Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[100] bg-[#0f172a] transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col">
+        <!-- Header -->
+        <div class="flex justify-between items-center p-6 border-b border-white/10 safe-area-top">
+            <a href="index2.html" class="text-xl font-bold tracking-tight flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-bolt text-white text-xs"></i>
+                </div>
+                <span class="gradient-neon">NEXUS</span>
+            </a>
+            <button id="close-menu-btn"
+                class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white bg-white/5 rounded-full transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6 safe-area-bottom">
+            <div class="flex flex-col gap-1">
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Home</p>
+                <a href="index.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Home 1</a>
+                <a href="index2.html" class="text-lg font-medium text-pink-400 py-2 border-b border-white/5">Home 2</a>
             </div>
-            <div class="flex-1 overflow-y-auto p-5">
-                <div class="space-y-2">
-                    <a href="index.html" class="block px-4 py-3 rounded-xl hover:bg-white/5 text-white">Home Dark Blue</a>
-                    <a href="index2.html" class="block px-4 py-3 rounded-xl bg-pink-500/10 text-pink-400 border border-pink-500/20">Home Neon</a>
-                    <a href="about.html" class="block px-4 py-3 rounded-xl hover:bg-white/5 text-white">About</a>
-                    <a href="services.html" class="block px-4 py-3 rounded-xl hover:bg-white/5 text-white">Services</a>
-                    <a href="admin-dashboard.html" class="block px-4 py-3 rounded-xl hover:bg-white/5 text-white">Admin Dashboard</a>
-                    <a href="user-dashboard.html" class="block px-4 py-3 rounded-xl hover:bg-white/5 text-white">User Dashboard</a>
-                    <a href="case-studies.html" class="block px-4 py-3 rounded-xl hover:bg-white/5 text-white">Work</a>
-                    <a href="pricing.html" class="block px-4 py-3 rounded-xl hover:bg-white/5 text-white">Pricing</a>
+            <div class="flex flex-col gap-1">
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Navigation</p>
+                <a href="about.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">About</a>
+                <a href="services.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Services</a>
+                <a href="case-studies.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Work</a>
+                <a href="pricing.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Pricing</a>
+                <a href="contact.html"
+                    class="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5">Contact</a>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Dashboards</p>
+                <a href="admin-dashboard.html" class="text-base text-gray-400 hover:text-white py-2">Admin Panel</a>
+                <a href="user-dashboard.html" class="text-base text-gray-400 hover:text-white py-2">User Dashboard</a>
+            </div>
+
+            <div class="mt-auto pt-6 border-t border-white/10">
+                <a href="contact.html" class="block w-full py-4 btn-solid text-center mb-4">
+                    Let's Talk
+                </a>
+                <div class="flex justify-center gap-6">
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors"><i
+                            class="fa-brands fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors"><i
+                            class="fa-brands fa-linkedin text-xl"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors"><i
+                            class="fa-brands fa-github text-xl"></i></a>
                 </div>
             </div>
-            <div class="p-5 border-t border-white/10">
-                <a href="contact.html" class="block btn-solid text-center">Let's Talk</a>
-            </div>
         </div>
-    </nav>
+    </div>
+
 
     <!-- Hero Section - Asymmetric Split Layout -->
     <section class="min-h-screen relative flex items-center pt-20">
@@ -357,20 +525,22 @@
             <div class="grid lg:grid-cols-5 gap-12 items-center">
                 <!-- Left Content - Takes 3 columns -->
                 <div class="lg:col-span-3 reveal-v2">
-                    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-pink-500/30 bg-pink-500/10 mb-6">
+                    <div
+                        class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-pink-500/30 bg-pink-500/10 mb-6">
                         <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
                         <span class="text-pink-400 text-sm font-medium">Digital Excellence 2025</span>
                     </div>
-                    
+
                     <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[0.9]">
                         <span class="text-white">IGNITE</span><br>
                         <span class="gradient-neon">YOUR BRAND</span>
                     </h1>
-                    
+
                     <p class="text-white text-lg md:text-xl max-w-xl mb-8 leading-relaxed">
-                        We craft <span class="text-cyan-400 font-semibold">extraordinary digital experiences</span> that transform businesses and captivate audiences worldwide.
+                        We craft <span class="text-cyan-400 font-semibold">extraordinary digital experiences</span> that
+                        transform businesses and captivate audiences worldwide.
                     </p>
-                    
+
                     <div class="flex flex-col sm:flex-row gap-4 mb-12">
                         <a href="services.html" class="btn-solid text-center">
                             <i class="fa-solid fa-rocket mr-2"></i> Launch Project
@@ -379,7 +549,7 @@
                             <i class="fa-solid fa-play"></i> View Work
                         </a>
                     </div>
-                    
+
                     <!-- Mini Stats Row -->
                     <div class="flex flex-wrap gap-8 pt-8 border-t border-white/10">
                         <div>
@@ -396,14 +566,15 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Right Content - Stacked Cards - Takes 2 columns -->
                 <div class="lg:col-span-2 reveal-v2 hidden lg:block" style="animation-delay: 0.3s;">
                     <div class="space-y-6">
                         <!-- Card 1 - Analytics -->
                         <div class="glass-card p-6">
                             <div class="flex items-center gap-4 mb-4">
-                                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
                                     <i class="fa-solid fa-chart-line text-white"></i>
                                 </div>
                                 <div>
@@ -417,15 +588,17 @@
                                     <span class="text-pink-400 font-bold">+285%</span>
                                 </div>
                                 <div class="h-2 bg-white/10 rounded-full overflow-hidden">
-                                    <div class="h-full w-4/5 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full"></div>
+                                    <div class="h-full w-4/5 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Card 2 - Testimonial -->
                         <div class="glass-card p-6" style="animation: float 6s ease-in-out infinite;">
                             <div class="flex items-center gap-3 mb-3">
-                                <img src="https://ui-avatars.com/api/?name=Emma+W&background=ff00ff&color=fff" class="w-10 h-10 rounded-full">
+                                <img src="https://ui-avatars.com/api/?name=Emma+W&background=ff00ff&color=fff"
+                                    class="w-10 h-10 rounded-full">
                                 <div>
                                     <div class="text-white font-semibold text-sm">Emma Wilson</div>
                                     <div class="text-white text-xs">CEO, TechStart</div>
@@ -440,7 +613,7 @@
                                 <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
                             </div>
                         </div>
-                        
+
                         <!-- Badge -->
                         <div class="glass-card px-5 py-3 inline-flex items-center gap-3">
                             <i class="fa-solid fa-trophy text-yellow-400"></i>
@@ -484,7 +657,8 @@
     <section class="py-24 relative z-10">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 reveal-v2">
-                <span class="text-pink-400 text-sm font-bold tracking-widest uppercase mb-4 block">What We Deliver</span>
+                <span class="text-pink-400 text-sm font-bold tracking-widest uppercase mb-4 block">What We
+                    Deliver</span>
                 <h2 class="text-4xl md:text-6xl font-black">
                     <span class="text-white">Premium</span>
                     <span class="gradient-neon">Services</span>
@@ -496,38 +670,45 @@
                 <div class="bento-item-1 glass-card p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 reveal-v2">
                     <div class="flex-1">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 text-xs font-bold">FEATURED</span>
-                            <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold">AI-POWERED</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 text-xs font-bold">FEATURED</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold">AI-POWERED</span>
                         </div>
                         <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">SEO Mastery Suite</h3>
-                        <p class="text-white text-lg mb-6">Dominate search rankings with our comprehensive AI-powered SEO strategies. Technical optimization, content strategy, and link building all in one.</p>
+                        <p class="text-white text-lg mb-6">Dominate search rankings with our comprehensive AI-powered
+                            SEO strategies. Technical optimization, content strategy, and link building all in one.</p>
                         <a href="services.html" class="btn-solid inline-flex items-center gap-2">
                             Explore SEO <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
                     <div class="w-full md:w-1/3 flex justify-center">
-                        <div class="w-40 h-40 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-600/20 border border-pink-500/30 flex items-center justify-center">
+                        <div
+                            class="w-40 h-40 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-600/20 border border-pink-500/30 flex items-center justify-center">
                             <i class="fa-solid fa-magnifying-glass-chart text-5xl text-pink-400"></i>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Item 2 -->
                 <div class="bento-item-2 glass-card p-8 reveal-v2" style="animation-delay: 0.1s;">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center mb-6">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center mb-6">
                         <i class="fa-solid fa-bullhorn text-cyan-400 text-xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Paid Media</h3>
-                    <p class="text-white mb-4">High-ROI campaigns across Google, Meta, LinkedIn with AI optimization.</p>
+                    <p class="text-white mb-4">High-ROI campaigns across Google, Meta, LinkedIn with AI optimization.
+                    </p>
                     <div class="flex gap-2">
                         <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs">PPC</span>
                         <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs">Social</span>
                     </div>
                 </div>
-                
+
                 <!-- Item 3 -->
                 <div class="bento-item-3 glass-card p-8 reveal-v2" style="animation-delay: 0.2s;">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-violet-600/20 border border-purple-500/30 flex items-center justify-center mb-6">
+                    <div
+                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-violet-600/20 border border-purple-500/30 flex items-center justify-center mb-6">
                         <i class="fa-solid fa-pen-nib text-purple-400 text-xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Content Strategy</h3>
@@ -537,28 +718,31 @@
                         <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs">Video</span>
                     </div>
                 </div>
-                
+
                 <!-- Item 4 -->
                 <div class="bento-item-4 glass-card p-6 reveal-v2" style="animation-delay: 0.3s;">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500/20 to-orange-600/20 border border-yellow-500/30 flex items-center justify-center mb-4">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500/20 to-orange-600/20 border border-yellow-500/30 flex items-center justify-center mb-4">
                         <i class="fa-solid fa-chart-pie text-yellow-400 text-lg"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Analytics</h3>
                     <p class="text-white text-sm">Data-driven insights</p>
                 </div>
-                
+
                 <!-- Item 5 -->
                 <div class="bento-item-5 glass-card p-6 reveal-v2" style="animation-delay: 0.4s;">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 border border-green-500/30 flex items-center justify-center mb-4">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 border border-green-500/30 flex items-center justify-center mb-4">
                         <i class="fa-brands fa-instagram text-green-400 text-lg"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Social Media</h3>
                     <p class="text-white text-sm">Brand engagement</p>
                 </div>
-                
+
                 <!-- Item 6 -->
                 <div class="bento-item-6 glass-card p-6 reveal-v2" style="animation-delay: 0.5s;">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-rose-600/20 border border-red-500/30 flex items-center justify-center mb-4">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-rose-600/20 border border-red-500/30 flex items-center justify-center mb-4">
                         <i class="fa-solid fa-envelope text-red-400 text-lg"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Email</h3>
@@ -603,7 +787,7 @@
                     <span class="gradient-neon">Work</span>
                 </h2>
             </div>
-            
+
             <div class="max-w-4xl mx-auto space-y-12">
                 <!-- Step 1 -->
                 <div class="timeline-item reveal-v2">
@@ -613,12 +797,13 @@
                             <div class="text-6xl font-black text-pink-500/20">01</div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-2">Discovery & Audit</h3>
-                                <p class="text-white">Deep dive into your business, competitors, and market opportunities. We analyze everything to build a winning strategy.</p>
+                                <p class="text-white">Deep dive into your business, competitors, and market
+                                    opportunities. We analyze everything to build a winning strategy.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Step 2 -->
                 <div class="timeline-item reveal-v2" style="animation-delay: 0.1s;">
                     <div class="timeline-dot" style="background: #00ffff; box-shadow: 0 0 20px #00ffff;"></div>
@@ -627,12 +812,13 @@
                             <div class="text-6xl font-black text-cyan-500/20">02</div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-2">Strategy & Planning</h3>
-                                <p class="text-white">Custom roadmap with clear KPIs, milestones, and resource allocation. Every action is tied to measurable outcomes.</p>
+                                <p class="text-white">Custom roadmap with clear KPIs, milestones, and resource
+                                    allocation. Every action is tied to measurable outcomes.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Step 3 -->
                 <div class="timeline-item reveal-v2" style="animation-delay: 0.2s;">
                     <div class="timeline-dot" style="background: #bf00ff; box-shadow: 0 0 20px #bf00ff;"></div>
@@ -641,21 +827,25 @@
                             <div class="text-6xl font-black text-purple-500/20">03</div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-2">Execute & Optimize</h3>
-                                <p class="text-white">Implementation with weekly updates and continuous optimization. We iterate fast based on real data.</p>
+                                <p class="text-white">Implementation with weekly updates and continuous optimization. We
+                                    iterate fast based on real data.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Step 4 -->
                 <div class="timeline-item reveal-v2" style="animation-delay: 0.3s;">
-                    <div class="timeline-dot" style="background: linear-gradient(135deg, #ff00ff, #00ffff); box-shadow: 0 0 20px #ff00ff;"></div>
+                    <div class="timeline-dot"
+                        style="background: linear-gradient(135deg, #ff00ff, #00ffff); box-shadow: 0 0 20px #ff00ff;">
+                    </div>
                     <div class="glass-card p-8">
                         <div class="flex flex-col md:flex-row md:items-center gap-6">
                             <div class="text-6xl font-black text-white/10">04</div>
                             <div>
                                 <h3 class="text-2xl font-bold text-white mb-2">Scale & Grow</h3>
-                                <p class="text-white">Once we find what works, we scale it aggressively. Continuous growth powered by AI and automation.</p>
+                                <p class="text-white">Once we find what works, we scale it aggressively. Continuous
+                                    growth powered by AI and automation.</p>
                             </div>
                         </div>
                     </div>
@@ -674,10 +864,12 @@
                         <i class="fa-solid fa-quote-left text-6xl text-pink-500/20 absolute top-8 left-8"></i>
                         <div class="relative z-10 pt-12">
                             <p class="text-2xl md:text-3xl font-medium text-white leading-relaxed mb-8">
-                                "Nexus didn't just improve our SEO — they <span class="text-pink-400">transformed our entire digital strategy</span>. The results exceeded everything we expected."
+                                "Nexus didn't just improve our SEO — they <span class="text-pink-400">transformed our
+                                    entire digital strategy</span>. The results exceeded everything we expected."
                             </p>
                             <div class="flex items-center gap-4">
-                                <img src="https://ui-avatars.com/api/?name=Sarah+Chen&background=ff00ff&color=fff&size=64" class="w-14 h-14 rounded-full border-2 border-pink-500">
+                                <img src="https://ui-avatars.com/api/?name=Sarah+Chen&background=ff00ff&color=fff&size=64"
+                                    class="w-14 h-14 rounded-full border-2 border-pink-500">
                                 <div>
                                     <div class="text-white font-bold text-lg">Sarah Chen</div>
                                     <div class="text-white">CMO, TechCorp Global</div>
@@ -686,7 +878,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Right Stats Grid -->
                 <div class="lg:w-1/2 grid grid-cols-2 gap-6">
                     <div class="glass-card p-6 text-center reveal-v2" style="animation-delay: 0.1s;">
@@ -715,12 +907,18 @@
         <div class="container mx-auto px-6">
             <p class="text-center text-white text-sm uppercase tracking-widest mb-8">Trusted by Industry Leaders</p>
             <div class="flex flex-wrap items-center justify-center gap-12 opacity-40">
-                <i class="fa-brands fa-google text-4xl md:text-5xl hover:text-pink-400 transition-colors cursor-pointer"></i>
-                <i class="fa-brands fa-microsoft text-4xl md:text-5xl hover:text-cyan-400 transition-colors cursor-pointer"></i>
-                <i class="fa-brands fa-amazon text-4xl md:text-5xl hover:text-purple-400 transition-colors cursor-pointer"></i>
-                <i class="fa-brands fa-spotify text-4xl md:text-5xl hover:text-pink-400 transition-colors cursor-pointer"></i>
-                <i class="fa-brands fa-airbnb text-4xl md:text-5xl hover:text-cyan-400 transition-colors cursor-pointer"></i>
-                <i class="fa-brands fa-meta text-4xl md:text-5xl hover:text-purple-400 transition-colors cursor-pointer"></i>
+                <i
+                    class="fa-brands fa-google text-4xl md:text-5xl hover:text-pink-400 transition-colors cursor-pointer"></i>
+                <i
+                    class="fa-brands fa-microsoft text-4xl md:text-5xl hover:text-cyan-400 transition-colors cursor-pointer"></i>
+                <i
+                    class="fa-brands fa-amazon text-4xl md:text-5xl hover:text-purple-400 transition-colors cursor-pointer"></i>
+                <i
+                    class="fa-brands fa-spotify text-4xl md:text-5xl hover:text-pink-400 transition-colors cursor-pointer"></i>
+                <i
+                    class="fa-brands fa-airbnb text-4xl md:text-5xl hover:text-cyan-400 transition-colors cursor-pointer"></i>
+                <i
+                    class="fa-brands fa-meta text-4xl md:text-5xl hover:text-purple-400 transition-colors cursor-pointer"></i>
             </div>
         </div>
     </section>
@@ -730,16 +928,19 @@
         <div class="container mx-auto px-6">
             <div class="glass-card p-12 md:p-20 text-center relative overflow-hidden reveal-v2">
                 <!-- Background Glow -->
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-pink-500/20 rounded-full blur-[100px]"></div>
+                <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-pink-500/20 rounded-full blur-[100px]">
+                </div>
                 <div class="absolute bottom-0 left-1/4 w-64 h-64 bg-cyan-500/20 rounded-full blur-[80px]"></div>
-                
+
                 <div class="relative z-10">
                     <h2 class="text-4xl md:text-6xl font-black mb-6">
                         <span class="text-white">Ready to</span><br>
                         <span class="gradient-neon">Dominate?</span>
                     </h2>
                     <p class="text-white text-lg max-w-2xl mx-auto mb-10">
-                        Join 500+ brands that have transformed their digital presence with Nexus. Let's build something extraordinary together.
+                        Join 500+ brands that have transformed their digital presence with Nexus. Let's build something
+                        extraordinary together.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a href="contact.html" class="btn-solid">
@@ -761,50 +962,64 @@
                 <!-- Brand -->
                 <div class="col-span-2 md:col-span-4 lg:col-span-2">
                     <a href="index2.html" class="text-2xl font-bold flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 rounded-xl flex items-center justify-center">
                             <i class="fa-solid fa-bolt text-white"></i>
                         </div>
                         <span class="gradient-neon">NEXUS</span>
                     </a>
-                    <p class="text-white mb-6 max-w-sm">Crafting extraordinary digital experiences that transform businesses and captivate audiences worldwide.</p>
+                    <p class="text-white mb-6 max-w-sm">Crafting extraordinary digital experiences that transform
+                        businesses and captivate audiences worldwide.</p>
                     <div class="flex gap-3">
-                        <a href="#" class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white hover:text-pink-400 hover:border-pink-500/50 transition-all">
+                        <a href="#"
+                            class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white hover:text-pink-400 hover:border-pink-500/50 transition-all">
                             <i class="fa-brands fa-twitter"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white hover:text-pink-400 hover:border-pink-500/50 transition-all">
+                        <a href="#"
+                            class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white hover:text-pink-400 hover:border-pink-500/50 transition-all">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white hover:text-pink-400 hover:border-pink-500/50 transition-all">
+                        <a href="#"
+                            class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white hover:text-pink-400 hover:border-pink-500/50 transition-all">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white hover:text-pink-400 hover:border-pink-500/50 transition-all">
+                        <a href="#"
+                            class="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white hover:text-pink-400 hover:border-pink-500/50 transition-all">
                             <i class="fa-brands fa-github"></i>
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Quick Links -->
                 <div>
                     <h4 class="text-white font-bold mb-4">Company</h4>
                     <ul class="space-y-3">
-                        <li><a href="about.html" class="text-white hover:text-pink-400 transition-colors text-sm">About</a></li>
-                        <li><a href="services.html" class="text-white hover:text-pink-400 transition-colors text-sm">Services</a></li>
-                        <li><a href="case-studies.html" class="text-white hover:text-pink-400 transition-colors text-sm">Work</a></li>
-                        <li><a href="contact.html" class="text-white hover:text-pink-400 transition-colors text-sm">Contact</a></li>
+                        <li><a href="about.html"
+                                class="text-white hover:text-pink-400 transition-colors text-sm">About</a></li>
+                        <li><a href="services.html"
+                                class="text-white hover:text-pink-400 transition-colors text-sm">Services</a></li>
+                        <li><a href="case-studies.html"
+                                class="text-white hover:text-pink-400 transition-colors text-sm">Work</a></li>
+                        <li><a href="contact.html"
+                                class="text-white hover:text-pink-400 transition-colors text-sm">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Services -->
                 <div>
                     <h4 class="text-white font-bold mb-4">Services</h4>
                     <ul class="space-y-3">
-                        <li><a href="services.html" class="text-white hover:text-cyan-400 transition-colors text-sm">SEO</a></li>
-                        <li><a href="services.html" class="text-white hover:text-cyan-400 transition-colors text-sm">PPC</a></li>
-                        <li><a href="services.html" class="text-white hover:text-cyan-400 transition-colors text-sm">Content</a></li>
-                        <li><a href="services.html" class="text-white hover:text-cyan-400 transition-colors text-sm">Analytics</a></li>
+                        <li><a href="services.html"
+                                class="text-white hover:text-cyan-400 transition-colors text-sm">SEO</a></li>
+                        <li><a href="services.html"
+                                class="text-white hover:text-cyan-400 transition-colors text-sm">PPC</a></li>
+                        <li><a href="services.html"
+                                class="text-white hover:text-cyan-400 transition-colors text-sm">Content</a></li>
+                        <li><a href="services.html"
+                                class="text-white hover:text-cyan-400 transition-colors text-sm">Analytics</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Contact -->
                 <div>
                     <h4 class="text-white font-bold mb-4">Contact</h4>
@@ -824,7 +1039,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <!-- Bottom Bar -->
             <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-white text-sm">© 2025 Nexus SEO. All rights reserved.</p>
@@ -838,68 +1053,15 @@
     </footer>
 
     <!-- Scroll to Top -->
-    <button id="scroll-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg opacity-0 invisible z-50 flex items-center justify-center transition-all hover:-translate-y-1 hover:shadow-pink-500/30">
+    <button id="scroll-top"
+        class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg opacity-0 invisible z-50 flex items-center justify-center transition-all hover:-translate-y-1 hover:shadow-pink-500/30">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
     <script src="js/main.js"></script>
     <script>
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if(mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        }
-        
-        if(closeMenuBtn && mobileMenu) {
-            closeMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        }
-        
-        mobileMenu?.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-        
-        // Scroll reveal
-        function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal-v2');
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    el.classList.add('active');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
-        
-        // Scroll to top button
-        const scrollTopBtn = document.getElementById('scroll-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                scrollTopBtn.classList.remove('opacity-0', 'invisible');
-                scrollTopBtn.classList.add('opacity-100', 'visible');
-            } else {
-                scrollTopBtn.classList.add('opacity-0', 'invisible');
-                scrollTopBtn.classList.remove('opacity-100', 'visible');
-            }
-        });
-        
-        scrollTopBtn?.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        // Inline script removed - logic moved to js/main.js
     </script>
 </body>
+
 </html>

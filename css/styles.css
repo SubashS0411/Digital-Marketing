@@ -41,18 +41,23 @@ body.theme-elegant h3 {
 html.lenis {
   height: auto;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 .lenis.lenis-smooth {
   scroll-behavior: auto;
 }
+
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
+
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
@@ -169,7 +174,7 @@ body.theme-elegant .gradient-text {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.6s ease;
 }
 
@@ -224,13 +229,16 @@ body.theme-elegant .btn-primary:hover {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #0A0A0A;
 }
+
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #00F0FF, #7000FF);
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #7000FF, #00F0FF);
 }
@@ -250,29 +258,63 @@ body.theme-elegant .btn-primary:hover {
 
 /* ========== ANIMATIONS ========== */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.8); opacity: 1; }
-  100% { transform: scale(1.5); opacity: 0; }
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
 @keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes text-shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes border-dance {
-  0%, 100% { border-color: rgba(0, 240, 255, 0.5); }
-  50% { border-color: rgba(112, 0, 255, 0.5); }
+
+  0%,
+  100% {
+    border-color: rgba(0, 240, 255, 0.5);
+  }
+
+  50% {
+    border-color: rgba(112, 0, 255, 0.5);
+  }
 }
 
 .animate-float {
@@ -289,7 +331,7 @@ body.theme-elegant .btn-primary:hover {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   background-size: 200% 100%;
   animation: text-shimmer 2s infinite;
 }
@@ -299,11 +341,25 @@ body.theme-elegant .btn-primary:hover {
 }
 
 /* Stagger Animation Classes */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-.stagger-5 { animation-delay: 0.5s; }
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+}
 
 /* ========== HOVER EFFECTS ========== */
 .hover-lift {
@@ -385,8 +441,13 @@ body.theme-elegant .btn-primary:hover {
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .marquee-container:hover .marquee-content {
@@ -486,8 +547,13 @@ body.theme-elegant .btn-primary:hover {
 }
 
 @keyframes skeleton-loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* ========== RESPONSIVE UTILITIES ========== */
@@ -495,17 +561,17 @@ body.theme-elegant .btn-primary:hover {
   .section-padding {
     padding: 60px 0;
   }
-  
+
   .hide-mobile {
     display: none !important;
   }
-  
+
   /* Mobile Containers */
   .container {
     padding-left: 16px;
     padding-right: 16px;
   }
-  
+
   /* Mobile Cards */
   .glass-card {
     padding: 20px !important;
@@ -517,7 +583,7 @@ body.theme-elegant .btn-primary:hover {
   .section-padding {
     padding: 40px 0;
   }
-  
+
   .glass-card {
     padding: 16px !important;
   }
@@ -530,10 +596,11 @@ body.theme-elegant .btn-primary:hover {
 }
 
 /* ========== MOBILE MENU GLOBAL ========== */
-.mobile-menu-overlay {
+.mobile-menu-overlay,
+#mobile-menu {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.98);
+  background: linear-gradient(180deg, #0a1628 0%, #0d1f3c 50%, #0f172a 100%) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 100;
@@ -545,7 +612,8 @@ body.theme-elegant .btn-primary:hover {
   padding: 0;
 }
 
-.mobile-menu-overlay.active {
+.mobile-menu-overlay.active,
+#mobile-menu:not(.translate-x-full) {
   transform: translateX(0);
 }
 
@@ -655,6 +723,7 @@ body.theme-elegant .btn-primary:hover {
 
 /* ========== GLOBAL MOBILE NAV IMPROVEMENTS ========== */
 @media (max-width: 1024px) {
+
   /* Hide desktop menu on tablets and below */
   nav .desktop-menu {
     display: none !important;
@@ -663,12 +732,13 @@ body.theme-elegant .btn-primary:hover {
 
 /* Touch-friendly button sizes */
 @media (max-width: 768px) {
+
   /* Better tap targets for nav */
   nav button {
     min-height: 44px;
     min-width: 44px;
   }
-  
+
   /* Ensure mobile menu button is visible and tappable */
   #mobile-menu-btn {
     display: flex !important;
@@ -681,6 +751,7 @@ body.theme-elegant .btn-primary:hover {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -693,16 +764,39 @@ body.theme-elegant .btn-primary:hover {
 }
 
 /* Animation delays */
-.animate-fade-up:nth-child(1) { animation-delay: 0.1s; }
-.animate-fade-up:nth-child(2) { animation-delay: 0.2s; }
-.animate-fade-up:nth-child(3) { animation-delay: 0.3s; }
-.animate-fade-up:nth-child(4) { animation-delay: 0.4s; }
-.animate-fade-up:nth-child(5) { animation-delay: 0.5s; }
+.animate-fade-up:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.animate-fade-up:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animate-fade-up:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.animate-fade-up:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.animate-fade-up:nth-child(5) {
+  animation-delay: 0.5s;
+}
 
 /* ========== PULSE SLOW ANIMATION ========== */
 @keyframes pulseSlow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
 }
 
 .animate-pulse-slow {
@@ -734,6 +828,7 @@ body.theme-elegant ::selection {
     opacity: 0;
     transform: translateY(60px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -745,6 +840,7 @@ body.theme-elegant ::selection {
     opacity: 0;
     transform: translateX(-60px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -756,6 +852,7 @@ body.theme-elegant ::selection {
     opacity: 0;
     transform: translateX(60px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -767,6 +864,7 @@ body.theme-elegant ::selection {
     opacity: 0;
     transform: scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -778,6 +876,7 @@ body.theme-elegant ::selection {
     opacity: 0;
     transform: rotate(-10deg) scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: rotate(0) scale(1);
@@ -789,31 +888,49 @@ body.theme-elegant ::selection {
     opacity: 0;
     transform: scale(0.3);
   }
+
   50% {
     transform: scale(1.05);
   }
+
   70% {
     transform: scale(0.9);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
   }
 }
 
+/* ========== SAFE AREA UTILITIES ========== */
+.safe-area-top {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+.safe-area-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
 @keyframes glowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(0, 240, 255, 0.6), 0 0 60px rgba(112, 0, 255, 0.3);
   }
 }
 
 @keyframes borderGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     border-color: rgba(0, 240, 255, 0.3);
   }
+
   50% {
     border-color: rgba(112, 0, 255, 0.5);
   }
@@ -823,19 +940,24 @@ body.theme-elegant ::selection {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
 }
 
 @keyframes floatShadow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
+
   50% {
     transform: translateY(-15px);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
@@ -843,9 +965,12 @@ body.theme-elegant ::selection {
 }
 
 @keyframes morphShape {
-  0%, 100% {
+
+  0%,
+  100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   }
+
   50% {
     border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
   }
@@ -951,12 +1076,29 @@ body.theme-elegant ::selection {
 }
 
 /* Stagger delays for reveal animations */
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
-.reveal-delay-6 { transition-delay: 0.6s; }
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+
+.reveal-delay-5 {
+  transition-delay: 0.5s;
+}
+
+.reveal-delay-6 {
+  transition-delay: 0.6s;
+}
 
 /* Card Hover Effects */
 .card-3d {
@@ -984,47 +1126,48 @@ body.theme-elegant ::selection {
 
 /* ========== MOBILE OPTIMIZATIONS ========== */
 @media (max-width: 768px) {
+
   /* Reduce animation intensity on mobile */
   .animate-float {
     animation: float 8s ease-in-out infinite;
   }
-  
+
   .animate-float-shadow {
     animation: none;
   }
-  
+
   .card-tilt:hover {
     transform: translateY(-5px);
   }
-  
+
   .card-3d:hover {
     transform: translateY(-5px);
   }
-  
+
   /* Improve touch targets */
   .glass-card {
     min-height: 44px;
   }
-  
+
   /* Better text scaling */
   h1 {
     font-size: clamp(2rem, 8vw, 4rem);
   }
-  
+
   h2 {
     font-size: clamp(1.5rem, 6vw, 3rem);
   }
-  
+
   h3 {
     font-size: clamp(1.125rem, 4vw, 1.5rem);
   }
-  
+
   /* Improve spacing on mobile */
   section {
     padding-top: 60px;
     padding-bottom: 60px;
   }
-  
+
   /* Hide complex animations on mobile for performance */
   .animate-morph {
     animation: none;
@@ -1033,22 +1176,23 @@ body.theme-elegant ::selection {
 }
 
 @media (max-width: 480px) {
+
   /* Extra small devices */
   .container {
     padding-left: 12px;
     padding-right: 12px;
   }
-  
+
   .glass-card {
     padding: 12px !important;
     border-radius: 12px !important;
   }
-  
+
   section {
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  
+
   /* Reduce animation complexity further */
   .reveal-on-scroll,
   .reveal-left,
@@ -1061,6 +1205,7 @@ body.theme-elegant ::selection {
 
 /* Prefers Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -1072,16 +1217,36 @@ body.theme-elegant ::selection {
 
 /* ========== PRINT STYLES ========== */
 @media print {
+
   .glass,
   .glass-card {
     background: white !important;
     border: 1px solid #ccc !important;
     box-shadow: none !important;
   }
-  
+
   nav,
   footer,
   .mobile-menu-overlay {
     display: none !important;
   }
+}
+
+/* V2 Mobile Menu Theme Overrides */
+.theme-v2 #mobile-menu {
+  background: linear-gradient(180deg, #1a0a2e 0%, #0f0515 100%);
+}
+
+.theme-v2 #mobile-menu .safe-area-top {
+  background: rgba(26, 10, 46, 0.95);
+  border-bottom: 1px solid rgba(191, 0, 255, 0.1);
+}
+
+.theme-v2 .nav-wrapper button#rtl-toggle {
+  border-color: rgba(236, 72, 153, 0.3);
+  background: rgba(236, 72, 153, 0.1);
+}
+
+.theme-v2 .nav-wrapper button#rtl-toggle i {
+  color: #f472b6;
 }
